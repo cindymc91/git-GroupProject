@@ -1,8 +1,12 @@
 package edu.insightr.gildedrose;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Inventory {
 
     private Item[] items;
+    private List<IStrategy> listStrat;
 
     public Item[] getItems() {
         return items;
@@ -22,6 +26,11 @@ public class Inventory {
                 new Item("Conjured Mana Cake", 3, 6)
         };
 
+        listStrat = new ArrayList<>();
+        listStrat.add(new StrategyUp());
+        listStrat.add(new StrategyDown());
+        listStrat.add(new StrategySulfuras());
+
     }
 
     public void printInventory() {
@@ -33,7 +42,7 @@ public class Inventory {
         System.out.println("\n");
     }
 
-    public void updateQuality() { //Méthode qu'on appelle à chaque fin de journée pour mettre à jour la qualité de chaque item
+    /*public void updateQuality() { //Méthode qu'on appelle à chaque fin de journée pour mettre à jour la qualité de chaque item
         for (int i = 0; i < items.length; i++) {
             if (items[i].getName() != "Aged Brie"
                     && items[i].getName() != "Backstage passes to a TAFKAL80ETC concert") {
@@ -84,13 +93,33 @@ public class Inventory {
                 }
             }
         }
+    }*/
+
+    public void updateQuality(){
+        String theName = null;
+        for(int i = 0; i < items.length; i++){
+            theName = items[i].getName();
+            if(theName.matches("(?i:.*aged brie.*)") || theName.matches("(?i:.*backstage.*)")){
+                listStrat.get(0).update(items[i]);
+            }
+            else if(theName.matches("(?i:.*Sulfuras.*)"))
+                listStrat.get(2).update(items[i]);
+            else
+                listStrat.get(1).update(items[i]);
+        }
     }
 
-    //On crée une méthode update
+    void updateSellin(){
+        for (int i = 0; i < items.length; i++){
+            items[i].setSellIn(items[i].getSellIn()-1);
+        }
+    }
+
 
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
         for (int i = 0; i < 10; i++) {
+            inventory.updateSellin();
             inventory.updateQuality();
             inventory.printInventory();
         }
