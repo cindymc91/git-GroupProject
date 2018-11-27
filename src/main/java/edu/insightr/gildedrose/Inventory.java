@@ -12,7 +12,7 @@ public class Inventory {
         this.items = items;
     }
 
-    public Inventory() {
+   /* public Inventory() {
         items = new Item[]{
                 new Item("+5 Dexterity Vest", 10, 20),
                 new Item("Aged Brie", 2, 0),
@@ -21,7 +21,17 @@ public class Inventory {
                 new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
                 new Item("Conjured Mana Cake", 3, 6)
         };
+    }*/
 
+    public Inventory() {
+        items = new Item[]{
+                new Vest("+5 Dexterity Vest", 10, 20),
+                new AgedBrie("Aged Brie", 2, 0),
+                new Elixir("Elixir of the Mongoose", 5, 7),
+                new Sulfuras("Sulfuras, Hand of Ragnaros", 0, 80),
+                new Backstage("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+                new Conjured("Conjured Mana Cake", 3, 6)
+        };
     }
 
     public void printInventory() {
@@ -33,7 +43,7 @@ public class Inventory {
         System.out.println("\n");
     }
 
-    public void updateQuality() { //Méthode qu'on appelle à chaque fin de journée pour mettre à jour la qualité de chaque item
+    /*public void updateQuality() { //Méthode qu'on appelle à chaque fin de journée pour mettre à jour la qualité de chaque item
         for (int i = 0; i < items.length; i++) {
             if (items[i].getName() != "Aged Brie"
                     && items[i].getName() != "Backstage passes to a TAFKAL80ETC concert") {
@@ -84,6 +94,19 @@ public class Inventory {
                 }
             }
         }
+    }*/
+
+    void updateQuality(){
+        UpdateVisitor aVisitor = new UpdateVisitor();
+        for (int i = 0; i < items.length; i++){
+            items[i].accept(aVisitor);
+        }
+    }
+
+    void updateSellin(){
+        for (int i = 0; i < items.length; i++){
+            items[i].setSellIn(items[i].getSellIn()-1);
+        }
     }
 
     //On crée une méthode update
@@ -91,6 +114,7 @@ public class Inventory {
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
         for (int i = 0; i < 10; i++) {
+            inventory.updateSellin();
             inventory.updateQuality();
             inventory.printInventory();
         }

@@ -1,10 +1,16 @@
 package edu.insightr.gildedrose;
 
-public class Item {
+public abstract class Item implements IVisitable{
 
     private String name;
     private int sellIn; //number of days remaining to sell the item
     private int quality; //how valuable the item is
+
+    public Item(){
+        this.name = null;
+        this.sellIn = -1;
+        this.quality = -1;
+    }
 
     public Item(String name, int sellIn, int quality) {
         super();

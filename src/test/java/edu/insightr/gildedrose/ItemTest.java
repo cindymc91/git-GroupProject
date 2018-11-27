@@ -11,7 +11,7 @@ public class ItemTest {
 
     @Before
     public void setUp() {
-        anItem = new Item("Sulfuras", 0, 80);
+        anItem = new Sulfuras("Sulfuras", 0, 80);
     }
 
     @Test
