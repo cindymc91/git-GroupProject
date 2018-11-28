@@ -95,9 +95,9 @@ public class Inventory {
         }
     }*/
 
-    public void updateQuality(){
+    public void updateQuality() {
         String theName = null;
-        for(int i = 0; i < items.length; i++){
+        for (int i = 0; i < items.length; i++) {
             theName = items[i].getName();
             if(theName.matches("(?i:.*aged brie.*)") || theName.matches("(?i:.*backstage.*)")){
                 listStrat.get(0).update(items[i]);
@@ -109,12 +109,11 @@ public class Inventory {
         }
     }
 
-    void updateSellin(){
-        for (int i = 0; i < items.length; i++){
-            items[i].setSellIn(items[i].getSellIn()-1);
+    public void updateSellin() {
+        for (int i = 0; i < items.length; i++) {
+            items[i].setSellIn(items[i].getSellIn() - 1);
         }
     }
-
 
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
