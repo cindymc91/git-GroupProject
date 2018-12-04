@@ -126,17 +126,12 @@ public class Inventory extends Application {
 
     void deleteItem(Item item){
         for(int i = 0; i < items.length; i++){
-            if(item.getName() == items[i].getName()) {
+            if(item.getName().equals(items[i].getName())) {
                 items[i] = items[i + 1];
             }
         }
         items[items.length-1] = null;
     }
-
-
-
-
-
 
 
     //On crée une méthode update
@@ -162,6 +157,14 @@ public class Inventory extends Application {
         else{
             items[freeIndex]= item;
         }
+    }
+
+    Item fetchItemByName(String name){
+        for(int i = 0; i < items.length; i++){
+            if(items[i].getName().equals(name))
+                return items[i];
+        }
+        return null;
     }
 
 
