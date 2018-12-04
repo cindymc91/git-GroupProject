@@ -141,6 +141,30 @@ public class Inventory extends Application {
 
     //On crée une méthode update
 
+
+    void addItem(Item item){
+        int freeIndex = -1;
+        for( int i= 0;i<items.length;i++){
+            if(items[i]==null){
+                freeIndex =i;
+                break;
+            }
+        }
+
+        if(freeIndex == -1){
+            Item[] temp = new Item[items.length+1];
+            for(int i =0;i<items.length;i++){
+                temp[i]=items[i];
+            }
+            temp[items.length]=item;
+            items=temp;
+        }
+        else{
+            items[freeIndex]= item;
+        }
+    }
+
+
     public static void main(String[] args) {
         launch(args);
 //        Inventory inventory = new Inventory();
