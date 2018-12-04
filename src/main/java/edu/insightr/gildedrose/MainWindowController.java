@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,6 +25,14 @@ public class MainWindowController implements Initializable {
     Button deleteButton;
     @FXML
     Button updateButton;
+    @FXML
+    Button editButton;
+    @FXML
+    TextField nameTF;
+    @FXML
+    TextField sellinTF;
+    @FXML
+    TextField qualityTF;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
