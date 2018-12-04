@@ -1,6 +1,20 @@
 package edu.insightr.gildedrose;
 
-public class Inventory {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Inventory extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainwindow.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
 
     private Item[] items;
 
@@ -42,6 +56,7 @@ public class Inventory {
         System.out.println("***************");
         System.out.println("\n");
     }
+
 
     /*public void updateQuality() { //Méthode qu'on appelle à chaque fin de journée pour mettre à jour la qualité de chaque item
         for (int i = 0; i < items.length; i++) {
@@ -127,13 +142,12 @@ public class Inventory {
     //On crée une méthode update
 
     public static void main(String[] args) {
-        Inventory inventory = new Inventory();
-        for (int i = 0; i < 10; i++) {
-            inventory.updateSellin();
-            inventory.updateQuality();
-            inventory.printInventory();
-        }
+        launch(args);
+//        Inventory inventory = new Inventory();
+//        for (int i = 0; i < 10; i++) {
+//            inventory.updateSellin();
+//            inventory.updateQuality();
+//            inventory.printInventory();
+//        }
     }
-
-
 }
