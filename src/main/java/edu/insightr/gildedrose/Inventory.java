@@ -109,6 +109,21 @@ public class Inventory {
         }
     }
 
+    void deleteItem(Item item){
+        for(int i = 0; i < items.length; i++){
+            if(item.getName() == items[i].getName()) {
+                items[i] = items[i + 1];
+            }
+        }
+        items[items.length-1] = null;
+    }
+
+
+
+
+
+
+
     //On crée une méthode update
 
     public static void main(String[] args) {
