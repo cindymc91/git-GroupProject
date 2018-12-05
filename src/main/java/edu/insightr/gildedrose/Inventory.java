@@ -124,17 +124,14 @@ public class Inventory extends Application {
         }
     }
 
-    void deleteItem(Item item){
-        for(int i = 0; i < items.length; i++){
-            if(item.getName().equals(items[i].getName())) {
+    void deleteItem(Item item) {
+        for (int i = 0; i < items.length; i++) {
+            if (item.getName().equals(items[i].getName())) {
                 items[i] = items[i + 1];
             }
         }
-        items[items.length-1] = null;
+        items[items.length - 1] = null;
     }
-
-
-    //On crée une méthode update
 
 
     void addItem(Item item){
