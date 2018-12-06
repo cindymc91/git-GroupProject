@@ -43,6 +43,15 @@ public abstract class Item implements IVisitable{
         this.quality = quality;
     }
 
+
+    public void editItem(Item editedItem)
+    {
+        this.setName(editedItem.getName());
+        this.setSellIn(editedItem.getSellIn());
+        this.setQuality(editedItem.getQuality());
+    }
+
+
     @Override
     public String toString() {
         return name;

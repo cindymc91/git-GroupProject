@@ -164,6 +164,12 @@ public class Inventory extends Application {
         }
     }
 
+    void editItem(String nomDeItemAModifier, Item nouveauItem)
+    {
+        Item itemAEditer;
+        //itemAEditer.editItem(nouveauItem);
+    }
+
     Item fetchItemByName(String name){
         try{
             for(int i = 0; i < items.length; i++) {

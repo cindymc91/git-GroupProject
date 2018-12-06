@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -18,6 +19,8 @@ import java.util.function.Function;
 public class MainWindowController implements Initializable {
 
     private Inventory inv;
+    private boolean addMode;
+    private String itemNameToEdit;
 
     @FXML
     ListView<Item> itemsListView;
@@ -30,6 +33,8 @@ public class MainWindowController implements Initializable {
     @FXML
     Button editButton;
     @FXML
+    Button saveButton;
+    @FXML
     TextField nameTF;
     @FXML
     TextField sellinTF;
@@ -37,12 +42,16 @@ public class MainWindowController implements Initializable {
     TextField qualityTF;
     @FXML
     PieChart pieChart;
+    @FXML
+    ComboBox typeComboBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         itemsListView.getSelectionModel().selectedItemProperty()
                 .addListener(e -> displayItemDetails(itemsListView.getSelectionModel().getSelectedItem()));
         inv = new Inventory();
+        addMode = false;
+        itemNameToEdit = null;
         fetchItems();
     }
 
@@ -51,6 +60,7 @@ public class MainWindowController implements Initializable {
             nameTF.setText(item.getName());
             sellinTF.setText(Integer.toString(item.getSellIn()));
             qualityTF.setText(Integer.toString(item.getQuality()));
+            typeComboBox.setValue(item.getClass().getSimpleName());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -94,4 +104,51 @@ public class MainWindowController implements Initializable {
         inv.deleteItem(itemToDelete);
         fetchItems();
     }
+
+    public void onEdit(){
+        editButton.setDisable(false);
+        saveButton.setDisable(false);
+        nameTF.setEditable(true);
+        sellinTF.setEditable(true);
+        qualityTF.setEditable(true);
+        addMode = false;
+
+        itemNameToEdit = nameTF.getText();
+    }
+
+    public void onSave(){
+        String name = nameTF.getText();
+        String type = (String) typeComboBox.getValue();
+        int sellin = 0;
+        int quality = 0;
+        try
+        {
+            sellin = Integer.parseInt(sellinTF.getText());
+        } catch(Exception e){sellin = 0;}
+        try
+        {
+            quality = Integer.parseInt(qualityTF.getText());
+        }catch (Exception e){quality =0;}
+
+        if(addMode == true)
+        {
+
+        }
+        else
+        {
+            switch(type)
+            {
+                case "AgedBrie":
+                    AgedBrie ab = new AgedBrie(name,sellin,quality);
+                    break;
+
+            }
+            //Item newItem = new Item(name,sellin,quality);
+
+        }
+    }
+
+
+
+
 }
