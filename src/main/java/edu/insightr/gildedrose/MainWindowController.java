@@ -1,7 +1,6 @@
 package edu.insightr.gildedrose;
 
 //import javafx.base.javafx.collections.FXCollections;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,7 +16,7 @@ import java.util.function.Function;
 
 public class MainWindowController implements Initializable {
 
-    Inventory inv;
+    private Inventory inv;
 
     @FXML
     ListView itemsListView;
@@ -42,11 +41,36 @@ public class MainWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         inv = new Inventory();
         fetchItems();
-
+        itemsListView.getSelectionModel().selectedItemProperty()
+                .addListener(e -> displayItemDetails(itemsListView.getSelectionModel().getSelectedItem().toString()));
 
     }
 
-    public void fetchItems() {
+    private void displayItemDetails(String name) {
+        try {
+            Item[] items = inv.getItems();
+            Item item = new Item() {
+                @Override
+                public void accept(IVisitor aVisitor) {
+
+                }
+            };
+            for (Item i: items) {
+                if(i.getName().equals(name)){
+                    item.setName(name);
+                    item.setSellIn(i.getSellIn());
+                    item.setQuality(i.getQuality());
+                    }
+                }
+            nameTF.setText(item.getName());
+            sellinTF.setText(Integer.toString(item.getSellIn()));
+            qualityTF.setText(Integer.toString(item.getQuality()));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void fetchItems() {
         ObservableList<Item> itemslist = FXCollections.observableArrayList(inv.getItems());
         itemsListView.setItems(itemslist);
 
