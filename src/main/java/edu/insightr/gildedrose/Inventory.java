@@ -125,12 +125,20 @@ public class Inventory extends Application {
     }
 
     void deleteItem(Item item) {
+        int position= -1;
         for (int i = 0; i < items.length; i++) {
             if (item.getName().equals(items[i].getName())) {
-                items[i] = items[i + 1];
+                position = i;
             }
         }
-        items[items.length - 1] = null;
+        Item [] newItems = new Item[items.length -1];
+        for (int i = 0; i < position; i++){
+            newItems[i] = items[i];
+        }
+        for(int i = position; i < newItems.length; i++){
+            newItems[i] = items[i+1];
+        }
+        items = newItems;
     }
 
 
@@ -157,9 +165,13 @@ public class Inventory extends Application {
     }
 
     Item fetchItemByName(String name){
-        for(int i = 0; i < items.length; i++){
-            if(items[i].getName().equals(name))
-                return items[i];
+        try{
+            for(int i = 0; i < items.length; i++) {
+                if (items[i].getName().equals(name))
+                    return items[i];
+            }
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return null;
     }

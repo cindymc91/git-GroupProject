@@ -19,7 +19,7 @@ public class MainWindowController implements Initializable {
     private Inventory inv;
 
     @FXML
-    ListView itemsListView;
+    ListView<Item> itemsListView;
     @FXML
     Button addItemButton;
     @FXML
@@ -39,10 +39,10 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        inv = new Inventory();
-        fetchItems();
         itemsListView.getSelectionModel().selectedItemProperty()
                 .addListener(e -> displayItemDetails(itemsListView.getSelectionModel().getSelectedItem().toString()));
+        inv = new Inventory();
+        fetchItems();
 
     }
 
@@ -84,7 +84,7 @@ public class MainWindowController implements Initializable {
                         fetchPieChartItem(itemslist, "Elixir", (item) -> item instanceof Elixir),
                         fetchPieChartItem(itemslist, "Vest", (item) -> item instanceof Vest)
 
-                );
+                  );
         pieChart.setData(pieChartData);
         pieChart.setStartAngle(90);
     }
@@ -108,6 +108,5 @@ public class MainWindowController implements Initializable {
         Item itemToDelete = inv.fetchItemByName(nameTF.getText());
         inv.deleteItem(itemToDelete);
         fetchItems();
-
     }
 }
