@@ -1,6 +1,7 @@
 package edu.insightr.gildedrose;
 
 //import javafx.base.javafx.collections.FXCollections;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -40,28 +41,13 @@ public class MainWindowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         itemsListView.getSelectionModel().selectedItemProperty()
-                .addListener(e -> displayItemDetails(itemsListView.getSelectionModel().getSelectedItem().toString()));
+                .addListener(e -> displayItemDetails(itemsListView.getSelectionModel().getSelectedItem()));
         inv = new Inventory();
         fetchItems();
-
     }
 
-    private void displayItemDetails(String name) {
-        try {
-            Item[] items = inv.getItems();
-            Item item = new Item() {
-                @Override
-                public void accept(IVisitor aVisitor) {
-
-                }
-            };
-            for (Item i: items) {
-                if(i.getName().equals(name)){
-                    item.setName(name);
-                    item.setSellIn(i.getSellIn());
-                    item.setQuality(i.getQuality());
-                    }
-                }
+    private void displayItemDetails(Item item) {
+        try {;
             nameTF.setText(item.getName());
             sellinTF.setText(Integer.toString(item.getSellIn()));
             qualityTF.setText(Integer.toString(item.getQuality()));
@@ -84,22 +70,21 @@ public class MainWindowController implements Initializable {
                         fetchPieChartItem(itemslist, "Elixir", (item) -> item instanceof Elixir),
                         fetchPieChartItem(itemslist, "Vest", (item) -> item instanceof Vest)
 
-                  );
+                );
         pieChart.setData(pieChartData);
         pieChart.setStartAngle(90);
     }
 
-    public PieChart.Data fetchPieChartItem(ObservableList<Item> items ,String name, Function<Item,Boolean> func){
-        PieChart.Data itemType = new PieChart.Data(name,0);
-        int a=0;
-        for(Item i : items){
-            if(func.apply(i)){
-                a=1;
+    public PieChart.Data fetchPieChartItem(ObservableList<Item> items, String name, Function<Item, Boolean> func) {
+        PieChart.Data itemType = new PieChart.Data(name, 0);
+        int a = 0;
+        for (Item i : items) {
+            if (func.apply(i)) {
+                a = 1;
+            } else {
+                a = 0;
             }
-            else{
-                a=0;
-            }
-            itemType.setPieValue(itemType.getPieValue()+a);
+            itemType.setPieValue(itemType.getPieValue() + a);
         }
         return itemType;
     }
