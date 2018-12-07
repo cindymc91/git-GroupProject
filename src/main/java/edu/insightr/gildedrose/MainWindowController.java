@@ -1,7 +1,5 @@
 package edu.insightr.gildedrose;
 
-//import javafx.base.javafx.collections.FXCollections;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +13,8 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Function;
+
+import com.google.gson.Gson;
 
 public class MainWindowController implements Initializable {
 
@@ -44,6 +44,8 @@ public class MainWindowController implements Initializable {
     PieChart pieChart;
     @FXML
     ComboBox typeComboBox;
+    @FXML
+    Button jsonButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

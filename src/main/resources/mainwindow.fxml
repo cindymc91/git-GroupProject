@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.7658862876254181" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.MainWindowController">
+<SplitPane dividerPositions="0.7658862876254181" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.MainWindowController">
   <items>
     <AnchorPane maxWidth="460.0" minHeight="0.0" minWidth="460.0" prefHeight="284.0" prefWidth="460.0">
          <children>
@@ -55,6 +55,7 @@
                   <TextField fx:id="qualityTF" disable="true" GridPane.rowIndex="6" />
                </children>
             </GridPane>
+            <Button fx:id="jsonButton" layoutX="92.0" layoutY="350.0" mnemonicParsing="false" text="Import from Json" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="130.0">
          <children>
