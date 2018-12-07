@@ -104,6 +104,7 @@ public class MainWindowController implements Initializable {
         Item itemToDelete = inv.fetchItemByName(nameTF.getText());
         inv.deleteItem(itemToDelete);
         fetchItems();
+        allBlank();
     }
 
     public void onEdit(){
@@ -202,5 +203,12 @@ public class MainWindowController implements Initializable {
 
         }
         fetchItems();
+    }
+
+    public void allBlank(){
+        nameTF.setText("");
+        sellinTF.setText("");
+        qualityTF.setText("");
+        typeComboBox.setValue(null);
     }
 }
