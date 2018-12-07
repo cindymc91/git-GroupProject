@@ -120,10 +120,7 @@ public class MainWindowController implements Initializable {
 
     public void onAdd(){
         addMode=true;
-        nameTF.setText("");
-        sellinTF.setText("");
-        qualityTF.setText("");
-        typeComboBox.getSelectionModel().select(-1);;
+        allBlank();
     }
 
     public void onSave(){
