@@ -57,6 +57,13 @@ public class MainWindowController implements Initializable {
 
     private void displayItemDetails(Item item) {
         try {
+            saveButton.setDisable(true);
+            nameTF.setDisable(true);
+            sellinTF.setDisable(true);
+            qualityTF.setDisable(true);
+            typeComboBox.setDisable(true);
+            deleteButton.setDisable(false);
+            editButton.setDisable(false);
             addMode=false;
             nameTF.setText(item.getName());
             sellinTF.setText(Integer.toString(item.getSellIn()));
@@ -104,15 +111,18 @@ public class MainWindowController implements Initializable {
         Item itemToDelete = inv.fetchItemByName(nameTF.getText());
         inv.deleteItem(itemToDelete);
         fetchItems();
+        saveButton.setDisable(true);
+        editButton.setDisable(true);
+        deleteButton.setDisable(true);
         allBlank();
     }
 
     public void onEdit(){
-        editButton.setDisable(false);
         saveButton.setDisable(false);
-        nameTF.setEditable(true);
-        sellinTF.setEditable(true);
-        qualityTF.setEditable(true);
+        nameTF.setDisable(false);
+        sellinTF.setDisable(false);
+        qualityTF.setDisable(false);
+        typeComboBox.setDisable(false);
         addMode = false;
 
         itemNameToEdit = nameTF.getText();
@@ -120,9 +130,12 @@ public class MainWindowController implements Initializable {
 
     public void onAdd(){
         addMode=true;
-        nameTF.setText("");
-        sellinTF.setText("");
-        qualityTF.setText("");
+        allBlank();
+        saveButton.setDisable(false);
+        nameTF.setDisable(false);
+        sellinTF.setDisable(false);
+        qualityTF.setDisable(false);
+        typeComboBox.setDisable(false);
         typeComboBox.getSelectionModel().select(-1);;
     }
 
@@ -209,6 +222,9 @@ public class MainWindowController implements Initializable {
 
         }
         fetchItems();
+        saveButton.setDisable(true);
+        editButton.setDisable(true);
+        deleteButton.setDisable(true);
     }
 
     public void allBlank(){

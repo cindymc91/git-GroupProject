@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.7658862876254181" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.MainWindowController">
+<SplitPane dividerPositions="0.7658862876254181" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.MainWindowController">
   <items>
     <AnchorPane maxWidth="460.0" minHeight="0.0" minWidth="460.0" prefHeight="284.0" prefWidth="460.0">
          <children>
@@ -35,13 +35,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="nameTF" GridPane.rowIndex="2" />
-                  <TextField fx:id="qualityTF" GridPane.rowIndex="6" />
-                  <Label prefHeight="18.0" prefWidth="44.0" text="Quality" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
-                  <Label text="Name" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                  <Label prefHeight="18.0" prefWidth="50.0" text="Sell In" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-                  <TextField fx:id="sellinTF" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="typeComboBox" prefWidth="150.0">
+                  <ComboBox fx:id="typeComboBox" disable="true" prefWidth="150.0">
                       <items>
                           <FXCollections fx:factory="observableArrayList">
                               <String fx:value="AgedBrie" />
@@ -53,6 +47,12 @@
                           </FXCollections>
                       </items>
                   </ComboBox>
+                  <Label text="Name" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                  <TextField fx:id="nameTF" disable="true" GridPane.rowIndex="2" />
+                  <Label prefHeight="18.0" prefWidth="50.0" text="Sell In" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
+                  <TextField fx:id="sellinTF" disable="true" GridPane.rowIndex="4" />
+                  <Label prefHeight="18.0" prefWidth="44.0" text="Quality" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+                  <TextField fx:id="qualityTF" disable="true" GridPane.rowIndex="6" />
                </children>
             </GridPane>
          </children></AnchorPane>
@@ -69,10 +69,10 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSave" text="Save" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button fx:id="saveButton" disable="true" mnemonicParsing="false" onAction="#onSave" text="Save" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                   <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#onAdd" text="Add Item" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDelete" text="Delete" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#onEdit" text="Edit" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="deleteButton" disable="true" mnemonicParsing="false" onAction="#onDelete" text="Delete" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="editButton" disable="true" mnemonicParsing="false" onAction="#onEdit" text="Edit" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
          </children></AnchorPane>
