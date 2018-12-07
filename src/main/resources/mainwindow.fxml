@@ -19,7 +19,7 @@
     <AnchorPane maxWidth="460.0" minHeight="0.0" minWidth="460.0" prefHeight="284.0" prefWidth="460.0">
          <children>
             <ListView fx:id="itemsListView" layoutX="14.0" layoutY="5.0" prefHeight="230.0" prefWidth="262.0" />
-            <Button fx:id="updateButton" layoutX="14.0" layoutY="350.0" mnemonicParsing="false" text="Update" />
+            <Button fx:id="updateButton" onAction="#onUpdate" layoutX="14.0" layoutY="350.0" mnemonicParsing="false" text="Update" />
             <PieChart fx:id="pieChart" layoutX="242.0" layoutY="235.0" prefHeight="122.0" prefWidth="149.0" />
             <GridPane layoutX="288.0" layoutY="5.0" prefHeight="230.0" prefWidth="166.0">
               <columnConstraints>

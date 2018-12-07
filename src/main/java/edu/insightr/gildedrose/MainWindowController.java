@@ -222,6 +222,12 @@ public class MainWindowController implements Initializable {
         deleteButton.setDisable(true);
     }
 
+    public void onUpdate(){
+        inv.updateSellin();
+        inv.updateQuality();
+        fetchItems();
+    }
+
     public void allBlank(){
         nameTF.setText("");
         sellinTF.setText("");
