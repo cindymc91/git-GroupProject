@@ -1,10 +1,21 @@
 package edu.insightr.gildedrose;
 
 import javafx.application.Application;
+import javafx.beans.binding.IntegerBinding;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import javax.swing.*;
+import java.io.File;
+import java.io.FileReader;
+import java.util.Iterator;
+
+import static java.lang.Math.toIntExact;
 
 public class Inventory extends Application {
 
@@ -189,6 +200,7 @@ public class Inventory extends Application {
 
 
     public static void main(String[] args) {
+
         launch(args);
         /*Inventory inventory = new Inventory();
         AgedBrie ab= new AgedBrie("Brie Aged",6,7);

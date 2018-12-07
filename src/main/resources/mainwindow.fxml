@@ -55,7 +55,7 @@
                   <TextField fx:id="qualityTF" disable="true" GridPane.rowIndex="6" />
                </children>
             </GridPane>
-            <Button fx:id="jsonButton" layoutX="92.0" layoutY="350.0" mnemonicParsing="false" text="Import from Json" />
+            <Button fx:id="jsonButton" layoutX="92.0" layoutY="350.0" onAction="#onLoad" mnemonicParsing="false" text="Import from Json" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="130.0">
          <children>

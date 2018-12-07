@@ -10,11 +10,21 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.io.File;
+import java.io.FileReader;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
 import com.google.gson.Gson;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import javax.swing.*;
+
+import static java.lang.Math.toIntExact;
 
 public class MainWindowController implements Initializable {
 
@@ -261,6 +271,67 @@ public class MainWindowController implements Initializable {
         {
             fetchItems();
         }
+    }
+
+    public void onLoad(){
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(null);
+
+        File file = null;
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            file = fc.getSelectedFile();
+            System.out.println("Opening " + file.getName());
+        }
+
+        JSONParser parser = new JSONParser();
+
+        try{
+            Object obj = parser.parse(new FileReader(file));
+
+            JSONObject jsonObject = (JSONObject) obj;
+
+            JSONArray itemsList = (JSONArray) jsonObject.get("items");
+
+            Iterator<JSONObject> iterator = itemsList.iterator();
+            while (iterator.hasNext()) {
+                JSONObject tempObj = iterator.next();
+                String name = (String) tempObj.get("name");
+                String type = (String) tempObj.get("type");
+                int quality = toIntExact((long)tempObj.get("quality"));
+                int sellin = toIntExact((long)tempObj.get("sellIn"));
+
+                switch(type)
+                {
+                    case "AgedBrie":
+                        AgedBrie agedBrie = new AgedBrie(name,sellin,quality);
+                        inv.addItem(agedBrie);
+                        break;
+                    case "Backstage":
+                        Backstage backstage = new Backstage(name,sellin,quality);
+                        inv.addItem(backstage);
+                        break;
+                    case "Conjured":
+                        Conjured conjured = new Conjured(name,sellin,quality);
+                        inv.addItem(conjured);
+                        break;
+                    case "Elixir":
+                        Elixir elixir = new Elixir(name,sellin,quality);
+                        inv.addItem(elixir);
+                        break;
+                    case "Sulfuras":
+                        Sulfuras sulfuras = new Sulfuras(name,sellin,quality);
+                        inv.addItem(sulfuras);
+                        break;
+                    case "Vest":
+                        Vest vest = new Vest(name,sellin,quality);
+                        inv.addItem(vest);
+                        break;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        fetchItems();
     }
 
     public void allBlank(){

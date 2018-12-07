@@ -1,18 +1,17 @@
-{"Inventory":[
-  {"AgedBrie":{"name":"Aged Brie","sellIn":2,"quality":0}},
-  {"AgedBrie":{"name":"Aged Brie","sellIn":2,"quality":0}},
-  {"Vest":{"name":"+5 Dexterity Vest","sellIn":10,"quality":20}},
-  {"Vest":{"name":"+10 Strength Vest","sellIn":30,"quality":35}},
-  {"Vest":{"name":"+7 Intelligence Vest","sellIn":30,"quality":35}},
-  {"Elixir":{"name":"Elixir of the Mongoose","sellIn":5,"quality":7}},
-  {"Elixir":{"name":"Elixir of spiritual strength","sellIn":7,"quality":8}},
-  {"Sulfuras":{"name":"Sulfuras, Hand of Ragnaros","sellIn":0,"quality":80}},
-  {"Backstage":{"name":"Backstage passes to a TAFKAL80ETC concert","sellIn":15,"quality":20}},
-  {"Backstage":{"name":"Backstage passes to meet ETC","sellIn":15,"quality":20}},
-  {"Conjured":{"name":"Conjured Mana Cake","sellIn":3,"quality":6}},
-  {"Conjured":{"name":"Conjured Lich King's Birthday Cake","sellIn":10,"quality":15}},
-  {"Conjured":{"name":"Conjured Baked Bread","sellIn":2,"quality":4}},
-  {"Conjured":{"name":"Conjured Health Cake","sellIn":3,"quality":4}}
+{"items":[
+  {"type":"AgedBrie","name":"Oldest Aged Brie","sellIn":2,"quality":0},
+  {"type":"Vest","name":"+DEF Dexterity Vest","sellIn":15,"quality":22},
+  {"type":"Vest","name":"+10 Strength Vest","sellIn":30,"quality":35},
+  {"type":"Vest","name":"+7 Intelligence Vest","sellIn":30,"quality":35},
+  {"type":"Elixir","name":"Elixir of the Young Mongoose","sellIn":5,"quality":7},
+  {"type":"Elixir","name":"Elixir of spiritual strength","sellIn":7,"quality":8},
+  {"type":"Sulfuras","name":"Sulfuras, Hand of Thor","sellIn":0,"quality":80},
+  {"type":"Backstage","name":"Backstage passes to a fantastic journey","sellIn":15,"quality":20},
+  {"type":"Backstage","name":"Backstage passes to meet ETC","sellIn":15,"quality":20},
+  {"type":"Conjured","name":"Conjured Exp Cake","sellIn":3,"quality":6},
+  {"type":"Conjured","name":"Conjured Lich King's Birthday Cake","sellIn":10,"quality":15},
+  {"type":"Conjured","name":"Conjured Baked Bread","sellIn":2,"quality":4},
+  {"type":"Conjured","name":"Conjured Health Cake","sellIn":3,"quality":4}
   ]
   
 }
