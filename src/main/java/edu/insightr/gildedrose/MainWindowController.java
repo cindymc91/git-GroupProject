@@ -81,17 +81,29 @@ public class MainWindowController implements Initializable {
         itemsListView.setItems(itemslist);
 
 
+
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
+
                         fetchPieChartItem(itemslist, "AgedBrie", (item) -> item instanceof AgedBrie),
                         fetchPieChartItem(itemslist, "Backstage", (item) -> item instanceof Backstage),
                         fetchPieChartItem(itemslist, "Conjured", (item) -> item instanceof Conjured),
                         fetchPieChartItem(itemslist, "Sulfuras", (item) -> item instanceof Sulfuras),
                         fetchPieChartItem(itemslist, "Elixir", (item) -> item instanceof Elixir),
                         fetchPieChartItem(itemslist, "Vest", (item) -> item instanceof Vest)
-
                 );
-        pieChart.setData(pieChartData);
+
+        //To avoid errors with the pie chart, we create a new one, pieChartDataOk, with all elements
+        //that are different from 0
+        ObservableList<PieChart.Data> pieChartDataOk = FXCollections.observableArrayList();
+        for (PieChart.Data p : pieChartData)
+        {
+            if(p.getPieValue()!=0)
+            {
+                pieChartDataOk.add(p);
+            }
+        }
+        pieChart.setData(pieChartDataOk);
         pieChart.setStartAngle(90);
     }
 

@@ -11,7 +11,7 @@ public class Inventory extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainwindow.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Main Window");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
