@@ -140,11 +140,8 @@ public class MainWindowController implements Initializable {
     }
 
     public void onSave(){
-        System.out.println(itemNameToEdit);
         String name = nameTF.getText();
-        System.out.println(name);
         String type = (String) typeComboBox.getValue();
-        System.out.println(type);
         int sellin = 0;
         int quality = 0;
         try
@@ -155,9 +152,6 @@ public class MainWindowController implements Initializable {
         {
             quality = Integer.parseInt(qualityTF.getText());
         }catch (Exception e){quality =0;}
-
-        System.out.println(sellin);
-        System.out.println(quality);
         if(addMode == true)
         {
             switch(type)
@@ -195,7 +189,6 @@ public class MainWindowController implements Initializable {
                 case "AgedBrie":
                     AgedBrie ab = new AgedBrie(name,sellin,quality);
                     inv.editItem(itemNameToEdit,ab);
-                    System.out.println(ab.toString());
                     break;
                 case "Backstage":
                     Backstage bs = new Backstage(name,sellin,quality);
