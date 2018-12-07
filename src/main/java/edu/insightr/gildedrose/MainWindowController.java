@@ -56,7 +56,8 @@ public class MainWindowController implements Initializable {
     }
 
     private void displayItemDetails(Item item) {
-        try {;
+        try {
+            addMode=false;
             nameTF.setText(item.getName());
             sellinTF.setText(Integer.toString(item.getSellIn()));
             qualityTF.setText(Integer.toString(item.getQuality()));
@@ -116,6 +117,14 @@ public class MainWindowController implements Initializable {
         itemNameToEdit = nameTF.getText();
     }
 
+    public void onAdd(){
+        addMode=true;
+        nameTF.setText("");
+        sellinTF.setText("");
+        qualityTF.setText("");
+        typeComboBox.getSelectionModel().select(-1);;
+    }
+
     public void onSave(){
         String name = nameTF.getText();
         String type = (String) typeComboBox.getValue();
@@ -132,7 +141,33 @@ public class MainWindowController implements Initializable {
 
         if(addMode == true)
         {
-
+            switch(type)
+            {
+                case "AgedBrie":
+                    AgedBrie agedBrie = new AgedBrie(name,sellin,quality);
+                    inv.addItem(agedBrie);
+                    break;
+                case "Backstage":
+                    Backstage backstage = new Backstage(name,sellin,quality);
+                    inv.addItem(backstage);
+                    break;
+                case "Conjured":
+                    Conjured conjured = new Conjured(name,sellin,quality);
+                    inv.addItem(conjured);
+                    break;
+                case "Elixir":
+                    Elixir elixir = new Elixir(name,sellin,quality);
+                    inv.addItem(elixir);
+                    break;
+                case "Sulfuras":
+                    Sulfuras sulfuras = new Sulfuras(name,sellin,quality);
+                    inv.addItem(sulfuras);
+                    break;
+                case "Vest":
+                    Vest vest = new Vest(name,sellin,quality);
+                    inv.addItem(vest);
+                    break;
+            }
         }
         else
         {
@@ -166,9 +201,6 @@ public class MainWindowController implements Initializable {
             //Item newItem = new Item(name,sellin,quality);
 
         }
+        fetchItems();
     }
-
-
-
-
 }
