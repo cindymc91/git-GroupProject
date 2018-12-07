@@ -44,7 +44,7 @@ public abstract class Item implements IVisitable{
     }
 
 
-    public void editItem(Item editedItem)
+    public void edit(Item editedItem)
     {
         this.setName(editedItem.getName());
         this.setSellIn(editedItem.getSellIn());

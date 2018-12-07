@@ -72,7 +72,7 @@
                   <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSave" text="Save" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                   <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#onAdd" text="Add Item" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDelete" text="Delete" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Button fx:id="editButton" mnemonicParsing="false" text="Edit" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#onEdit" text="Edit" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
          </children></AnchorPane>

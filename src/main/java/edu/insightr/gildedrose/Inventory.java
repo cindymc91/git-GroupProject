@@ -166,8 +166,13 @@ public class Inventory extends Application {
 
     void editItem(String nomDeItemAModifier, Item nouveauItem)
     {
-        Item itemAEditer;
-        //itemAEditer.editItem(nouveauItem);
+        for(int i=0; i<items.length;i++)
+        {
+            if(items[i].getName() == nomDeItemAModifier)
+            {
+                items[i].edit(nouveauItem);
+            }
+        }
     }
 
     Item fetchItemByName(String name){
@@ -185,7 +190,15 @@ public class Inventory extends Application {
 
     public static void main(String[] args) {
         launch(args);
-//        Inventory inventory = new Inventory();
+        /*Inventory inventory = new Inventory();
+        AgedBrie ab= new AgedBrie("Brie Aged",6,7);
+        String type = inventory.getItems()[1].getClass().getSimpleName();
+        switch(type) {
+            case "AgedBrie":
+                inventory.editItem("Aged Brie", ab);
+                break;
+        }
+        System.out.println(inventory.getItems()[1].getName());*/
 //        for (int i = 0; i < 10; i++) {
 //            inventory.updateSellin();
 //            inventory.updateQuality();
