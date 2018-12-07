@@ -46,6 +46,8 @@ public class MainWindowController implements Initializable {
     ComboBox typeComboBox;
     @FXML
     Button jsonButton;
+    @FXML
+    Button cancelButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -140,6 +142,7 @@ public class MainWindowController implements Initializable {
         addMode = false;
 
         itemNameToEdit = nameTF.getText();
+        cancelButton.setDisable(false);
     }
 
     public void onAdd(){
@@ -151,6 +154,7 @@ public class MainWindowController implements Initializable {
         qualityTF.setDisable(false);
         typeComboBox.setDisable(false);
         typeComboBox.getSelectionModel().select(-1);;
+        cancelButton.setDisable(false);
     }
 
     public void onSave(){
@@ -238,6 +242,25 @@ public class MainWindowController implements Initializable {
         inv.updateSellin();
         inv.updateQuality();
         fetchItems();
+    }
+
+    public void onCancel(){
+        nameTF.setDisable(true);
+        sellinTF.setDisable(true);
+        qualityTF.setDisable(true);
+        typeComboBox.setDisable(true);
+        saveButton.setDisable(true);
+        editButton.setDisable(true);
+        cancelButton.setDisable(true);
+
+        if(addMode==true)
+        {
+            allBlank();
+        }
+        else
+        {
+            fetchItems();
+        }
     }
 
     public void allBlank(){
