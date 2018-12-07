@@ -168,7 +168,7 @@ public class Inventory extends Application {
     {
         for(int i=0; i<items.length;i++)
         {
-            if(items[i].getName() == nomDeItemAModifier)
+            if(items[i].getName().equals(nomDeItemAModifier))
             {
                 items[i].edit(nouveauItem);
             }

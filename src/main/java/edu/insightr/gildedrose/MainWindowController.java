@@ -180,19 +180,25 @@ public class MainWindowController implements Initializable {
             switch(type)
             {
                 case "AgedBrie":
-
+                    AgedBrie ab = new AgedBrie(name,sellin,quality);
+                    inv.editItem(itemNameToEdit,ab);
+                    System.out.println(ab.toString());
                     break;
                 case "Backstage":
-
+                    Backstage bs = new Backstage(name,sellin,quality);
+                    inv.editItem(itemNameToEdit,bs);
                     break;
                 case "Conjured":
-
+                    Conjured conjured = new Conjured(name,sellin,quality);
+                    inv.editItem(itemNameToEdit,conjured);
                     break;
                 case "Elixir":
-
+                    Elixir elix = new Elixir(name,sellin,quality);
+                    inv.editItem(itemNameToEdit,elix);
                     break;
                 case "Sulfuras":
-
+                    Sulfuras sulf = new Sulfuras(name,sellin,quality);
+                    inv.editItem(itemNameToEdit,sulf);
                     break;
                 case "Vest":
                     Vest vest = new Vest(name,sellin,quality);
