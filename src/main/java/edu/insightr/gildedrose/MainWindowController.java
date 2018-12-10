@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -57,6 +59,8 @@ public class MainWindowController implements Initializable {
     Button jsonButton;
     @FXML
     Button cancelButton;
+    @FXML
+    BarChart barChartSellIn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -91,17 +95,21 @@ public class MainWindowController implements Initializable {
         ObservableList<Item> itemslist = FXCollections.observableArrayList(inv.getItems());
         itemsListView.setItems(itemslist);
 
-
+        int nbAgedBrie = countItem(itemslist,(item) -> item instanceof AgedBrie);
+        int nbBackstage = countItem(itemslist,(item) -> item instanceof Backstage);
+        int nbConjured = countItem(itemslist,(item) -> item instanceof Conjured);
+        int nbSulfuras = countItem(itemslist,(item) -> item instanceof Sulfuras);
+        int nbElixir = countItem(itemslist,(item) -> item instanceof Elixir);
+        int nbVest = countItem(itemslist,(item) -> item instanceof Vest);
 
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-
-                        fetchPieChartItem(itemslist, "AgedBrie", (item) -> item instanceof AgedBrie),
-                        fetchPieChartItem(itemslist, "Backstage", (item) -> item instanceof Backstage),
-                        fetchPieChartItem(itemslist, "Conjured", (item) -> item instanceof Conjured),
-                        fetchPieChartItem(itemslist, "Sulfuras", (item) -> item instanceof Sulfuras),
-                        fetchPieChartItem(itemslist, "Elixir", (item) -> item instanceof Elixir),
-                        fetchPieChartItem(itemslist, "Vest", (item) -> item instanceof Vest)
+                        createPieChartItem("AgedBrie", nbAgedBrie),
+                        createPieChartItem("Backstage",nbBackstage),
+                        createPieChartItem("Conjured",nbConjured),
+                        createPieChartItem("Sulfuras", nbSulfuras),
+                        createPieChartItem("Elixir", nbElixir),
+                        createPieChartItem("Vest", nbVest)
                 );
 
         //To avoid errors with the pie chart, we create a new one, pieChartDataOk, with all elements
@@ -114,22 +122,23 @@ public class MainWindowController implements Initializable {
                 pieChartDataOk.add(p);
             }
         }
-        pieChart.setData(pieChartDataOk);
+        pieChart.setData(pieChartData);
         pieChart.setStartAngle(90);
+
     }
 
-    public PieChart.Data fetchPieChartItem(ObservableList<Item> items, String name, Function<Item, Boolean> func) {
-        PieChart.Data itemType = new PieChart.Data(name, 0);
-        int a = 0;
-        for (Item i : items) {
-            if (func.apply(i)) {
-                a = 1;
-            } else {
-                a = 0;
+    private int countItem(ObservableList<Item> items, Function<Item,Boolean> func){
+        int count = 0;
+        for (Item i : items){
+            if (func.apply(i)){
+                count++;
             }
-            itemType.setPieValue(itemType.getPieValue() + a);
         }
-        return itemType;
+        return count;
+    }
+
+    public PieChart.Data createPieChartItem( String name, int count) {
+        return new PieChart.Data(name, count);
     }
 
     public void onDelete() {
