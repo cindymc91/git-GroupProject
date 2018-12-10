@@ -138,7 +138,7 @@ public class Inventory extends Application {
     void deleteItem(Item item) {
         int position= -1;
         for (int i = 0; i < items.length; i++) {
-            if (item.getName().equals(items[i].getName())) {
+            if (item.getId() == items[i].getId()) {
                 position = i;
             }
         }
@@ -175,21 +175,21 @@ public class Inventory extends Application {
         }
     }
 
-    void editItem(String nomDeItemAModifier, Item nouveauItem)
+    void editItem(int idDeItemAModifier, Item nouveauItem)
     {
         for(int i=0; i<items.length;i++)
         {
-            if(items[i].getName().equals(nomDeItemAModifier))
+            if(items[i].getId() == idDeItemAModifier)
             {
                 items[i].edit(nouveauItem);
             }
         }
     }
 
-    Item fetchItemByName(String name){
+    Item fetchItemById(int id){
         try{
             for(int i = 0; i < items.length; i++) {
-                if (items[i].getName().equals(name))
+                if (items[i].getId() == id)
                     return items[i];
             }
         }catch (Exception e) {

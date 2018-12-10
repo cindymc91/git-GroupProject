@@ -7,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.File;
 import java.io.FileReader;
@@ -31,7 +28,6 @@ public class MainWindowController implements Initializable {
 
     private Inventory inv;
     private boolean addMode;
-    private String itemNameToEdit;
 
     @FXML
     ListView<Item> itemsListView;
@@ -61,6 +57,8 @@ public class MainWindowController implements Initializable {
     Button cancelButton;
     @FXML
     BarChart barChartSellIn;
+    @FXML
+    Label idNumberLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -68,7 +66,6 @@ public class MainWindowController implements Initializable {
                 .addListener(e -> displayItemDetails(itemsListView.getSelectionModel().getSelectedItem()));
         inv = new Inventory();
         addMode = false;
-        itemNameToEdit = null;
         fetchItems();
     }
 
@@ -82,6 +79,7 @@ public class MainWindowController implements Initializable {
             deleteButton.setDisable(false);
             editButton.setDisable(false);
             addMode=false;
+            idNumberLabel.setText(Integer.toString(item.getId()));
             nameTF.setText(item.getName());
             sellinTF.setText(Integer.toString(item.getSellIn()));
             qualityTF.setText(Integer.toString(item.getQuality()));
@@ -142,7 +140,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void onDelete() {
-        Item itemToDelete = inv.fetchItemByName(nameTF.getText());
+        Item itemToDelete = inv.fetchItemById(Integer.parseInt(idNumberLabel.getText()));
         inv.deleteItem(itemToDelete);
         fetchItems();
         saveButton.setDisable(true);
@@ -159,7 +157,6 @@ public class MainWindowController implements Initializable {
         typeComboBox.setDisable(false);
         addMode = false;
 
-        itemNameToEdit = nameTF.getText();
         cancelButton.setDisable(false);
     }
 
@@ -176,6 +173,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void onSave(){
+        int id = Integer.parseInt(idNumberLabel.getText());
         String name = nameTF.getText();
         String type = (String) typeComboBox.getValue();
         int sellin = 0;
@@ -224,27 +222,27 @@ public class MainWindowController implements Initializable {
             {
                 case "AgedBrie":
                     AgedBrie ab = new AgedBrie(name,sellin,quality);
-                    inv.editItem(itemNameToEdit,ab);
+                    inv.editItem(id,ab);
                     break;
                 case "Backstage":
                     Backstage bs = new Backstage(name,sellin,quality);
-                    inv.editItem(itemNameToEdit,bs);
+                    inv.editItem(id,bs);
                     break;
                 case "Conjured":
                     Conjured conjured = new Conjured(name,sellin,quality);
-                    inv.editItem(itemNameToEdit,conjured);
+                    inv.editItem(id,conjured);
                     break;
                 case "Elixir":
                     Elixir elix = new Elixir(name,sellin,quality);
-                    inv.editItem(itemNameToEdit,elix);
+                    inv.editItem(id,elix);
                     break;
                 case "Sulfuras":
                     Sulfuras sulf = new Sulfuras(name,sellin,quality);
-                    inv.editItem(itemNameToEdit,sulf);
+                    inv.editItem(id,sulf);
                     break;
                 case "Vest":
                     Vest vest = new Vest(name,sellin,quality);
-                    inv.editItem(itemNameToEdit,vest);
+                    inv.editItem(id,vest);
                     break;
             }
             //Item newItem = new Item(name,sellin,quality);
@@ -346,6 +344,7 @@ public class MainWindowController implements Initializable {
         nameTF.setText("");
         sellinTF.setText("");
         qualityTF.setText("");
+        idNumberLabel.setText("");
         typeComboBox.setValue(null);
     }
 }
