@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -95,6 +97,8 @@ public class MainWindowController implements Initializable {
         ObservableList<Item> itemslist = FXCollections.observableArrayList(inv.getItems());
         itemsListView.setItems(itemslist);
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //count of each Item
         int nbAgedBrie = countItem(itemslist,(item) -> item instanceof AgedBrie);
         int nbBackstage = countItem(itemslist,(item) -> item instanceof Backstage);
         int nbConjured = countItem(itemslist,(item) -> item instanceof Conjured);
@@ -102,6 +106,9 @@ public class MainWindowController implements Initializable {
         int nbElixir = countItem(itemslist,(item) -> item instanceof Elixir);
         int nbVest = countItem(itemslist,(item) -> item instanceof Vest);
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //PieChart
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
                         createPieChartItem("AgedBrie", nbAgedBrie),
@@ -125,6 +132,35 @@ public class MainWindowController implements Initializable {
         pieChart.setData(pieChartData);
         pieChart.setStartAngle(90);
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //BarChart
+
+        int maxSellIn = checkMaxSellIn(itemslist);
+        barChartSellIn.getXAxis().setLabel("Sell In");
+        barChartSellIn.getYAxis().setLabel("Quantity");
+
+        XYChart.Series series1 = new XYChart.Series();
+        barChartSellIn.getData().clear();
+        series1.setName("All items");
+        for(int i =0;i<=maxSellIn;i++){
+            if(countItemBySellIn(itemslist,i)!=0){
+                String barName = String.valueOf(i);
+                series1.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i)));
+            }
+        }
+        barChartSellIn.getData().addAll(series1);
+
+//        XYChart.Series dataSeries1 = new XYChart.Series();
+//        dataSeries1.setName("2014");
+//
+//        dataSeries1.getData().add(new XYChart.Data("Desktop", 178));
+//        dataSeries1.getData().add(new XYChart.Data("Phone"  , 65));
+//        dataSeries1.getData().add(new XYChart.Data("Tablet"  , 23));
+//
+//
+//        barChartSellIn.getData().add(dataSeries1);
+
     }
 
     private int countItem(ObservableList<Item> items, Function<Item,Boolean> func){
@@ -136,7 +172,24 @@ public class MainWindowController implements Initializable {
         }
         return count;
     }
-
+    private int checkMaxSellIn(ObservableList<Item> items){
+        int max=0;
+        for (Item i :items) {
+            if (i.getSellIn() > max){
+                max = i.getSellIn();
+            }
+        }
+        return max;
+    }
+    private int countItemBySellIn(ObservableList<Item> items,int sellIn){
+        int count =0;
+        for (Item i :items) {
+            if (i.getSellIn() == sellIn){
+                count++;
+            }
+        }
+        return count;
+    }
     public PieChart.Data createPieChartItem( String name, int count) {
         return new PieChart.Data(name, count);
     }
