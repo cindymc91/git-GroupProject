@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
@@ -77,14 +78,14 @@
                         <DatePicker fx:id="creationDateDatePicker" disable="true" GridPane.rowIndex="7" />
                     </children>
                 </GridPane>
-                <BarChart fx:id="barChartSellIn" layoutY="496.0" prefHeight="230.0" prefWidth="250.0">
+                <StackedBarChart fx:id="barChartSellIn" layoutY="496.0" prefHeight="230.0" prefWidth="250.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                         <NumberAxis side="LEFT" />
                     </yAxis>
-                </BarChart>
+                </StackedBarChart>
                 <BarChart fx:id="barChartCreationDate" layoutX="252.0" layoutY="495.0" prefHeight="230.0" prefWidth="250.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM" />

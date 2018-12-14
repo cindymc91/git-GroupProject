@@ -4,11 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.PieChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 
 import java.io.File;
@@ -64,7 +60,7 @@ public class MainWindowController implements Initializable {
     @FXML
     Button cancelButton;
     @FXML
-    BarChart barChartSellIn;
+    StackedBarChart barChartSellIn;
     @FXML
     Label idNumberLabel;
     @FXML
@@ -153,11 +149,23 @@ public class MainWindowController implements Initializable {
         barChartSellIn.getXAxis().setLabel("Sell In");
         barChartSellIn.getYAxis().setLabel("Quantity");
 
-        XYChart.Series series1 = new XYChart.Series();
+        XYChart.Series seriesAgedBrie = new XYChart.Series();
+        XYChart.Series seriesBackstage = new XYChart.Series();
+        XYChart.Series seriesConjured = new XYChart.Series();
+        XYChart.Series seriesElixir = new XYChart.Series();
+        XYChart.Series seriesSulfuras = new XYChart.Series();
+        XYChart.Series seriesVest = new XYChart.Series();
         barChartSellIn.getData().clear();
-        series1.setName("All items");
+
+        seriesAgedBrie.setName("Aged Brie");
+        seriesBackstage.setName("Backstage");
+        seriesConjured.setName("Conjured");
+        seriesElixir.setName("Elixir");
+        seriesSulfuras.setName("Sulfuras");
+        seriesVest.setName("Vest");
+
         for(int i =0;i<=maxSellIn;i++){
-            if(countItemBySellIn(itemslist,i)!=0){
+            if(atLeastOne(itemslist,i)){
                 String barName = String.valueOf(i);
                 series1.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i)));
             }
@@ -200,16 +208,6 @@ public class MainWindowController implements Initializable {
         //Ajoute toutes les donnes de series2 dans le barchart
         barChartCreationDate.getData().addAll(series2);
 
-//        XYChart.Series dataSeries1 = new XYChart.Series();
-//        dataSeries1.setName("2014");
-//
-//        dataSeries1.getData().add(new XYChart.Data("Desktop", 178));
-//        dataSeries1.getData().add(new XYChart.Data("Phone"  , 65));
-//        dataSeries1.getData().add(new XYChart.Data("Tablet"  , 23));
-//
-//
-//        barChartSellIn.getData().add(dataSeries1);
-
     }
 
     private int countItem(ObservableList<Item> items, Function<Item,Boolean> func){
@@ -231,11 +229,25 @@ public class MainWindowController implements Initializable {
         }
         return max;
     }
-    private int countItemBySellIn(ObservableList<Item> items,int sellIn){
+
+    //Renvoie true s'il y a au moins un item pour le sellin indiqué
+    private boolean atLeastOne(ObservableList<Item> items, int sellIn) {
+        for (Item i : items) {
+            if (i.getSellIn() == sellIn) {
+               return true;
+            }
+        }
+        return false;
+    }
+
+    //Compte le nombre d'item de chaque type par date de Sellin
+    private int countItemBySellIn(ObservableList<Item> items,int sellIn, Function<Item,Boolean> func){
         int count =0;
         for (Item i :items) {
-            if (i.getSellIn() == sellIn){
-                count++;
+            if(func.apply(i)){
+                if (i.getSellIn() == sellIn){
+                    count++;
+                }
             }
         }
         return count;
