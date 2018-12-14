@@ -14,7 +14,9 @@ import javafx.scene.control.*;
 import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -190,7 +192,8 @@ public class MainWindowController implements Initializable {
         //Pour chaque date, compte le nombre de date dans itemsList et ajoute la donnée dans series2
         for(Date d :itemsDate)
         {
-            String barName = String.valueOf(d);
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String barName = formatter.format(d);
             series2.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist,String.valueOf(d))));
         }
 
@@ -242,7 +245,7 @@ public class MainWindowController implements Initializable {
         int count =0;
         for (Item i :items) {
             String dateItem = String.valueOf(i.getCreationDate());
-            if (dateItem == creationDate){
+            if (dateItem.equals(creationDate)){
                 count++;
             }
         }

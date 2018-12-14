@@ -18,105 +18,116 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.7658862876254181" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="759.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.MainWindowController">
-  <items>
-    <AnchorPane maxWidth="460.0" minHeight="0.0" minWidth="460.0" prefHeight="284.0" prefWidth="460.0">
-         <children>
-            <ListView fx:id="itemsListView" layoutX="14.0" layoutY="5.0" prefHeight="230.0" prefWidth="262.0" />
-            <PieChart fx:id="pieChart" layoutX="4.0" layoutY="248.0" prefHeight="122.0" prefWidth="446.0" />
-            <GridPane layoutX="288.0" layoutY="5.0" prefHeight="230.0" prefWidth="166.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
+<SplitPane dividerPositions="0.7245441795231417" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.MainWindowController">
+    <items>
+        <AnchorPane maxWidth="470.0" prefHeight="943.0" prefWidth="470.0">
+            <children>
+                <ListView fx:id="itemsListView" layoutX="14.0" layoutY="5.0" prefHeight="230.0" prefWidth="262.0" />
+                <PieChart fx:id="pieChart" layoutX="6.0" layoutY="244.0" prefHeight="230.0" prefWidth="491.0" />
+                <GridPane layoutX="329.0" layoutY="5.0" prefHeight="230.0" prefWidth="166.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <ComboBox fx:id="typeComboBox" disable="true" prefWidth="150.0" GridPane.rowIndex="1">
-                      <items>
-                          <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="AgedBrie" />
-                              <String fx:value="Backstage" />
-                              <String fx:value="Conjured" />
-                              <String fx:value="Elixir" />
-                              <String fx:value="Sulfuras" />
-                              <String fx:value="Vest" />
-                          </FXCollections>
-                      </items>
-                  </ComboBox>
-                  <Label text="Name" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-                  <TextField fx:id="nameTF" disable="true" GridPane.rowIndex="3" />
-                  <Label prefHeight="18.0" prefWidth="50.0" text="Sell In" GridPane.rowIndex="6" GridPane.valignment="BOTTOM" />
-                  <TextField fx:id="sellinTF" disable="true" GridPane.rowIndex="7" />
-                  <Label prefHeight="18.0" prefWidth="44.0" text="Quality" GridPane.rowIndex="8" GridPane.valignment="BOTTOM" />
-                  <TextField fx:id="qualityTF" disable="true" GridPane.rowIndex="9" />
-                  <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                           <children>
-                              <Label fx:id="idTextLabel" layoutX="9.0" layoutY="6.0" text="Id" />
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                           <children>
-                              <Label fx:id="idNumberLabel" layoutX="14.0" layoutY="5.0" />
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
-                  <Label fx:id="creationDateTextLabel" text="Creation Date" GridPane.rowIndex="4" />
-                  <DatePicker fx:id="creationDateDatePicker" disable="true" GridPane.rowIndex="5" />
-               </children>
-            </GridPane>
-            <BarChart fx:id="barChartSellIn" layoutX="-3.0" layoutY="398.0" prefHeight="196.0" prefWidth="460.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </BarChart>
-            <BarChart fx:id="barChartCreationDate" layoutX="-3.0" layoutY="580.0" prefHeight="196.0" prefWidth="460.0">
-               <xAxis>
-                  <CategoryAxis side="BOTTOM" />
-               </xAxis>
-               <yAxis>
-                  <NumberAxis side="LEFT" />
-               </yAxis>
-            </BarChart>
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="130.0">
-         <children>
-            <GridPane layoutX="10.0" layoutY="14.0" prefHeight="218.0" prefWidth="117.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="saveButton" disable="true" mnemonicParsing="false" onAction="#onSave" text="Save" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                  <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#onAdd" text="Add Item" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="deleteButton" disable="true" mnemonicParsing="false" onAction="#onDelete" text="Delete" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Button fx:id="editButton" disable="true" mnemonicParsing="false" onAction="#onEdit" text="Edit" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                   <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#onCancel" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-               </children>
-            </GridPane>
-            <Button fx:id="jsonButton" layoutX="15.0" layoutY="523.0" mnemonicParsing="false" onAction="#onLoad" text="Import from Json" />
-            <Button fx:id="updateButton" layoutX="32.0" layoutY="454.0" mnemonicParsing="false" onAction="#onUpdate" text="Update" />
-         </children></AnchorPane>
-  </items>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <SplitPane dividerPositions="0.2" mouseTransparent="true" prefHeight="160.0" prefWidth="200.0">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                    <children>
+                                        <Label fx:id="idTextLabel" alignment="CENTER" layoutX="9.0" layoutY="6.0" text="Id" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="28.0" prefWidth="93.0">
+                                    <children>
+                                        <Label fx:id="idNumberLabel" layoutX="14.0" layoutY="5.0" />
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                        <ComboBox fx:id="typeComboBox" disable="true" prefWidth="150.0" GridPane.rowIndex="1">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="AgedBrie" />
+                                    <String fx:value="Backstage" />
+                                    <String fx:value="Conjured" />
+                                    <String fx:value="Elixir" />
+                                    <String fx:value="Sulfuras" />
+                                    <String fx:value="Vest" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <Label text="Name" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                        <TextField fx:id="nameTF" disable="true" GridPane.rowIndex="3" />
+                        <Label prefHeight="18.0" prefWidth="50.0" text="Sell In" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
+                        <TextField fx:id="sellinTF" disable="true" GridPane.rowIndex="5" />
+                        <Label prefHeight="18.0" prefWidth="44.0" text="Quality" GridPane.halignment="LEFT" GridPane.rowIndex="8" GridPane.valignment="BOTTOM" />
+                        <TextField fx:id="qualityTF" disable="true" GridPane.rowIndex="9" />
+                        <Label fx:id="creationDateTextLabel" text="Creation Date" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="BOTTOM" />
+                        <DatePicker fx:id="creationDateDatePicker" disable="true" GridPane.rowIndex="7" />
+                    </children>
+                </GridPane>
+                <BarChart fx:id="barChartSellIn" layoutY="496.0" prefHeight="230.0" prefWidth="250.0">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </BarChart>
+                <BarChart fx:id="barChartCreationDate" layoutX="252.0" layoutY="495.0" prefHeight="230.0" prefWidth="250.0">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </BarChart>
+            </children></AnchorPane>
+        <AnchorPane prefHeight="558.0" prefWidth="38.0">
+            <children>
+                <GridPane layoutX="17.0" layoutY="14.0" prefHeight="218.0" prefWidth="117.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="saveButton" disable="true" mnemonicParsing="false" onAction="#onSave" text="Save" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#onAdd" text="Add Item" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="deleteButton" disable="true" mnemonicParsing="false" onAction="#onDelete" text="Delete" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Button fx:id="editButton" disable="true" mnemonicParsing="false" onAction="#onEdit" text="Edit" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#onCancel" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                    </children>
+                </GridPane>
+                <GridPane layoutX="16.0" layoutY="627.0" prefHeight="100.0" prefWidth="118.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="updateButton" mnemonicParsing="false" onAction="#onUpdate" text="Update" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="jsonButton" mnemonicParsing="false" onAction="#onLoad" text="Import from Json" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                    </children>
+                </GridPane>
+            </children></AnchorPane>
+    </items>
 </SplitPane>

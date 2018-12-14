@@ -30,6 +30,7 @@ public class Inventory extends Application {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainwindow.fxml"));
         primaryStage.setTitle("Main Window");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -211,6 +212,7 @@ public class Inventory extends Application {
     public static void main(String[] args) {
 
         launch(args);
+
 
 //        for (int i = 0; i < 10; i++) {
 //            inventory.updateSellin();
