@@ -1,16 +1,16 @@
 {"items":[
-  {"type":"AgedBrie","name":"Oldest Aged Brie","sellIn":2,"quality":0},
-  {"type":"Vest","name":"+DEF Dexterity Vest","sellIn":15,"quality":22},
-  {"type":"Vest","name":"+10 Strength Vest","sellIn":30,"quality":35},
-  {"type":"Vest","name":"+7 Intelligence Vest","sellIn":30,"quality":35},
-  {"type":"Elixir","name":"Elixir of the Young Mongoose","sellIn":5,"quality":7},
-  {"type":"Elixir","name":"Elixir of spiritual strength","sellIn":7,"quality":8},
-  {"type":"Sulfuras","name":"Sulfuras, Hand of Thor","sellIn":0,"quality":80},
-  {"type":"Backstage","name":"Backstage passes to a fantastic journey","sellIn":15,"quality":20},
-  {"type":"Backstage","name":"Backstage passes to meet ETC","sellIn":15,"quality":20},
-  {"type":"Conjured","name":"Conjured Exp Cake","sellIn":3,"quality":6},
-  {"type":"Conjured","name":"Conjured Lich King's Birthday Cake","sellIn":10,"quality":15},
-  {"type":"Conjured","name":"Conjured Baked Bread","sellIn":2,"quality":4},
+  {"type":"AgedBrie","name":"Oldest Aged Brie","sellIn":2,"quality":0,"creationDate":"10-12-2018"},
+  {"type":"Vest","name":"+DEF Dexterity Vest","sellIn":15,"quality":22,"creationDate":"12-12-2018"},
+  {"type":"Vest","name":"+10 Strength Vest","sellIn":30,"quality":35,"creationDate":"12-12-2018"},
+  {"type":"Vest","name":"+7 Intelligence Vest","sellIn":30,"quality":35,"creationDate":"11-12-2018"},
+  {"type":"Elixir","name":"Elixir of the Young Mongoose","sellIn":5,"quality":7,"creationDate":"13-12-2018"},
+  {"type":"Elixir","name":"Elixir of spiritual strength","sellIn":7,"quality":8,"creationDate":"10-12-2018"},
+  {"type":"Sulfuras","name":"Sulfuras, Hand of Thor","sellIn":0,"quality":80,"creationDate":"10-12-2018"},
+  {"type":"Backstage","name":"Backstage passes to a fantastic journey","sellIn":15,"quality":20,"creationDate":"14-12-2018"},
+  {"type":"Backstage","name":"Backstage passes to meet ETC","sellIn":15,"quality":20,"creationDate":"10-12-2018"},
+  {"type":"Conjured","name":"Conjured Exp Cake","sellIn":3,"quality":6,"creationDate":"14-12-2018"},
+  {"type":"Conjured","name":"Conjured Lich King's Birthday Cake","sellIn":10,"quality":15,"creationDate":"10-12-2018"},
+  {"type":"Conjured","name":"Conjured Baked Bread","sellIn":2,"quality":4,"creationDate":"12-12-2018"},
   {"type":"Conjured","name":"Conjured Health Cake","sellIn":3,"quality":4}
   ]
   

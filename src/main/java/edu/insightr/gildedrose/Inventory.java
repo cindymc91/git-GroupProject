@@ -204,7 +204,7 @@ public class Inventory extends Application {
     public static void main(String[] args) {
 
         launch(args);
-        
+
 //        for (int i = 0; i < 10; i++) {
 //            inventory.updateSellin();
 //            inventory.updateQuality();
