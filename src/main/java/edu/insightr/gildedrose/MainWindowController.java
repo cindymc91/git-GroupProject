@@ -14,6 +14,9 @@ import javafx.scene.control.*;
 import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.function.Function;
@@ -63,12 +66,18 @@ public class MainWindowController implements Initializable {
     Label idNumberLabel;
     @FXML
     BarChart barChartCreationDate;
+    @FXML
+    DatePicker creationDateDatePicker;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         itemsListView.getSelectionModel().selectedItemProperty()
                 .addListener(e -> displayItemDetails(itemsListView.getSelectionModel().getSelectedItem()));
-        inv = new Inventory();
+        try {
+            inv = new Inventory();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         addMode = false;
         fetchItems();
     }
@@ -88,6 +97,7 @@ public class MainWindowController implements Initializable {
             sellinTF.setText(Integer.toString(item.getSellIn()));
             qualityTF.setText(Integer.toString(item.getQuality()));
             typeComboBox.setValue(item.getClass().getSimpleName());
+            creationDateDatePicker.setValue(item.getCreationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

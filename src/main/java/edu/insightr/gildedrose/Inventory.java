@@ -13,6 +13,10 @@ import org.json.simple.parser.JSONParser;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
@@ -50,9 +54,12 @@ public class Inventory extends Application {
         };
     }*/
 
-    public Inventory() {
+    public Inventory() throws ParseException {
+        String datestring = "21-11-2018";
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = format.parse(datestring);
         items = new Item[]{
-                new Vest("+5 Dexterity Vest", 10, 20),
+                new Vest("+5 Dexterity Vest", 10, 20, date),
                 new AgedBrie("Aged Brie", 2, 0),
                 new Elixir("Elixir of the Mongoose", 5, 7),
                 new Sulfuras("Sulfuras, Hand of Ragnaros", 0, 80),

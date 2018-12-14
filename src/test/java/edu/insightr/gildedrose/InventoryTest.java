@@ -3,6 +3,8 @@ package edu.insightr.gildedrose;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.ParseException;
+
 import static org.junit.Assert.*;
 
 public class InventoryTest {
@@ -11,7 +13,7 @@ public class InventoryTest {
     protected Item[] oldList;
 
     @Before
-    public void setUp() {
+    public void setUp() throws ParseException {
         inv = new Inventory();
         oldList = inv.getItems(); //On définit l'ancienne liste ici, car c'est un préalable au test
     }
