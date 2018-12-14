@@ -1,5 +1,9 @@
 package edu.insightr.gildedrose;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Item implements IVisitable{
@@ -9,12 +13,14 @@ public abstract class Item implements IVisitable{
     private String name;
     private int sellIn; //number of days remaining to sell the item
     private int quality; //how valuable the item is
+    private Date creationDate;
 
     public Item(){
         this.id = count.incrementAndGet();
         this.name = null;
         this.sellIn = -1;
         this.quality = -1;
+        this.creationDate = null;
     }
 
     public Item(String name, int sellIn, int quality) {
@@ -23,6 +29,16 @@ public abstract class Item implements IVisitable{
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+        this.creationDate = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
+
+    public Item(String name, int sellIn, int quality, Date creationDate) {
+        super();
+        this.id = count.incrementAndGet();
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+        this.creationDate = creationDate;
     }
 
     public int getId() {
@@ -51,6 +67,10 @@ public abstract class Item implements IVisitable{
 
     public void setQuality(int quality) {
         this.quality = quality;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
     }
 
 

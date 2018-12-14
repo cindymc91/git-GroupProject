@@ -13,6 +13,8 @@ import org.json.simple.parser.JSONParser;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 
 import static java.lang.Math.toIntExact;
@@ -201,7 +203,12 @@ public class Inventory extends Application {
 
     public static void main(String[] args) {
 
-        launch(args);
+        //launch(args);
+        Inventory inventory = new Inventory();
+        for (int i = 0; i < inventory.getItems().length; i++) {
+            System.out.println(inventory.getItems()[i].getId() + " " + inventory.getItems()[i].getName() + " "
+            +inventory.getItems()[i].getCreationDate());
+        }
 
 //        for (int i = 0; i < 10; i++) {
 //            inventory.updateSellin();
