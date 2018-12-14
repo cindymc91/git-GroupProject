@@ -17,6 +17,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.function.Function;
@@ -161,6 +162,41 @@ public class MainWindowController implements Initializable {
         }
         barChartSellIn.getData().addAll(series1);
 
+
+        //2nd BarChart
+        //Initialisation
+        barChartCreationDate.getXAxis().setLabel("Creation Date");
+        barChartCreationDate.getYAxis().setLabel("Quantity");
+        XYChart.Series series2 = new XYChart.Series();
+        barChartCreationDate.getData().clear();
+        series2.setName("All items");
+
+        //On recupere dans une liste les DIFFERENTES DATES
+        //Chaque date est donc contenue une et une unique fois dans la liste
+        ObservableList<Date> itemsDate = FXCollections.observableArrayList();
+        for (Item i :itemslist)
+        {
+            if(itemsDate.contains(i.getCreationDate()))
+            {
+                //Si la liste contient la date ne fais rien
+            }
+            else
+            {
+                //Sinon ajoute la date
+                itemsDate.add(i.getCreationDate());
+            }
+        }
+
+        //Pour chaque date, compte le nombre de date dans itemsList et ajoute la donnée dans series2
+        for(Date d :itemsDate)
+        {
+            String barName = String.valueOf(d);
+            series2.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist,String.valueOf(d))));
+        }
+
+        //Ajoute toutes les donnes de series2 dans le barchart
+        barChartCreationDate.getData().addAll(series2);
+
 //        XYChart.Series dataSeries1 = new XYChart.Series();
 //        dataSeries1.setName("2014");
 //
@@ -182,6 +218,7 @@ public class MainWindowController implements Initializable {
         }
         return count;
     }
+
     private int checkMaxSellIn(ObservableList<Item> items){
         int max=0;
         for (Item i :items) {
@@ -200,6 +237,19 @@ public class MainWindowController implements Initializable {
         }
         return count;
     }
+
+    private int countItemByCreationDate(ObservableList<Item> items, String creationDate){
+        int count =0;
+        for (Item i :items) {
+            String dateItem = String.valueOf(i.getCreationDate());
+            if (dateItem == creationDate){
+                count++;
+            }
+        }
+        return count;
+    }
+
+
     public PieChart.Data createPieChartItem( String name, int count) {
         return new PieChart.Data(name, count);
     }
