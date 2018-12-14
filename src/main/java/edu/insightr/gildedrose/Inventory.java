@@ -56,7 +56,7 @@ public class Inventory extends Application {
     }*/
 
     public Inventory() throws ParseException {
-        String datestring = "21-11-2018";
+        String datestring = "09-12-2018";
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         Date date = format.parse(datestring);
         items = new Item[]{

@@ -309,7 +309,6 @@ public class MainWindowController implements Initializable {
     }
 
     public void onSave(){
-        int id = Integer.parseInt(idNumberLabel.getText());
         String name = nameTF.getText();
         String type = (String) typeComboBox.getValue();
         int sellin = 0;
@@ -354,6 +353,7 @@ public class MainWindowController implements Initializable {
         }
         else
         {
+            int id = Integer.parseInt(idNumberLabel.getText());
             switch(type)
             {
                 case "AgedBrie":
@@ -441,31 +441,56 @@ public class MainWindowController implements Initializable {
                 String type = (String) tempObj.get("type");
                 int quality = toIntExact((long)tempObj.get("quality"));
                 int sellin = toIntExact((long)tempObj.get("sellIn"));
+                boolean hasDate = false;
+                Date date = new Date();
+                if(tempObj.containsKey("creationDate"))
+                {
+                    hasDate = true;
+                    date = new SimpleDateFormat("dd-MM-yyyy").parse((String)tempObj.get("creationDate"));
+                }
 
                 switch(type)
                 {
                     case "AgedBrie":
-                        AgedBrie agedBrie = new AgedBrie(name,sellin,quality);
+                        AgedBrie agedBrie;
+                        if(hasDate)
+                            agedBrie = new AgedBrie(name,sellin,quality, date);
+                        else agedBrie = new AgedBrie(name,sellin,quality);
                         inv.addItem(agedBrie);
                         break;
                     case "Backstage":
-                        Backstage backstage = new Backstage(name,sellin,quality);
+                        Backstage backstage;
+                        if(hasDate)
+                            backstage = new Backstage(name,sellin,quality, date);
+                        else backstage = new Backstage(name,sellin,quality);
                         inv.addItem(backstage);
                         break;
                     case "Conjured":
-                        Conjured conjured = new Conjured(name,sellin,quality);
+                        Conjured conjured;
+                        if(hasDate)
+                            conjured = new Conjured(name,sellin,quality, date);
+                        else conjured = new Conjured(name,sellin,quality);
                         inv.addItem(conjured);
                         break;
                     case "Elixir":
-                        Elixir elixir = new Elixir(name,sellin,quality);
+                        Elixir elixir;
+                        if(hasDate)
+                            elixir = new Elixir(name,sellin,quality, date);
+                        else elixir = new Elixir(name,sellin,quality);
                         inv.addItem(elixir);
                         break;
                     case "Sulfuras":
-                        Sulfuras sulfuras = new Sulfuras(name,sellin,quality);
+                        Sulfuras sulfuras;
+                        if(hasDate)
+                            sulfuras = new Sulfuras(name,sellin,quality, date);
+                        else sulfuras = new Sulfuras(name,sellin,quality);
                         inv.addItem(sulfuras);
                         break;
                     case "Vest":
-                        Vest vest = new Vest(name,sellin,quality);
+                        Vest vest;
+                        if(hasDate)
+                            vest = new Vest(name,sellin,quality, date);
+                        else vest = new Vest(name,sellin,quality);
                         inv.addItem(vest);
                         break;
                 }
