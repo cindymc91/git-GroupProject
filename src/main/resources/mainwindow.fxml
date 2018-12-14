@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.7658862876254181" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.MainWindowController">
+<SplitPane dividerPositions="0.7658862876254181" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="759.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.MainWindowController">
   <items>
     <AnchorPane maxWidth="460.0" minHeight="0.0" minWidth="460.0" prefHeight="284.0" prefWidth="460.0">
          <children>
@@ -79,6 +79,14 @@
               <yAxis>
                 <NumberAxis side="LEFT" />
               </yAxis>
+            </BarChart>
+            <BarChart fx:id="barChartCreationDate" layoutX="-3.0" layoutY="580.0" prefHeight="196.0" prefWidth="460.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
             </BarChart>
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="130.0">

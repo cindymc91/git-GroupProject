@@ -61,6 +61,8 @@ public class MainWindowController implements Initializable {
     BarChart barChartSellIn;
     @FXML
     Label idNumberLabel;
+    @FXML
+    BarChart barChartCreationDate;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
