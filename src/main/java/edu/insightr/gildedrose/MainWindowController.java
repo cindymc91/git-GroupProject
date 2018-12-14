@@ -167,10 +167,16 @@ public class MainWindowController implements Initializable {
         for(int i =0;i<=maxSellIn;i++){
             if(atLeastOne(itemslist,i)){
                 String barName = String.valueOf(i);
-                series1.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i)));
+                seriesAgedBrie.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof AgedBrie)));
+                seriesBackstage.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof Backstage)));
+                seriesConjured.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof Conjured)));
+                seriesElixir.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof Elixir)));
+                seriesSulfuras.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof Sulfuras)));
+                seriesVest.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof Vest)));
+
             }
         }
-        barChartSellIn.getData().addAll(series1);
+        barChartSellIn.getData().addAll(seriesAgedBrie, seriesBackstage, seriesConjured, seriesElixir, seriesSulfuras, seriesVest);
 
 
         //2nd BarChart
