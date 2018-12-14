@@ -5,13 +5,17 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
+import java.util.*;
+
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertThat;
 
 public class Stepdefs {
     private Inventory inventory;
     private Item[] items;
-    //private Item vest;
+    private ArrayList<Integer> itemIDs = new ArrayList<Integer>();
     private Item conjured;
 
     @Given("^I have a new inventory$")
@@ -19,6 +23,27 @@ public class Stepdefs {
         inventory = new Inventory();
         items = inventory.getItems();
         conjured = items[5];
+    }
+
+    @Given("^I have a list of sorted item IDs$")
+    public void iHaveAListOfSortedItemIds() throws Throwable {
+        inventory = new Inventory();
+        items = inventory.getItems();
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+
+        for (Item it : items) {
+            ids.add(it.getId());
+        }
+        Collections.sort(ids);
+        itemIDs.addAll(ids);
+    }
+
+    @Then("^No two consecutive values are the same$")
+    public void noConsecutiveValuesSame() throws Throwable {
+        for (int i = 1; i < itemIDs.size(); i++) {
+            System.out.println(itemIDs.get(i));
+            assertNotSame("should not be same Object",itemIDs.get(i), itemIDs.get(i-1));
+        }
     }
 
     @Then("^the quality of the conjured item is initialized at (\\d+)$")
