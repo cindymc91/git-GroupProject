@@ -123,8 +123,8 @@ public class MainWindowController implements Initializable {
                         createPieChartItem("AgedBrie", nbAgedBrie),
                         createPieChartItem("Backstage",nbBackstage),
                         createPieChartItem("Conjured",nbConjured),
-                        createPieChartItem("Sulfuras", nbSulfuras),
                         createPieChartItem("Elixir", nbElixir),
+                        createPieChartItem("Sulfuras", nbSulfuras),
                         createPieChartItem("Vest", nbVest)
                 );
 
@@ -169,15 +169,15 @@ public class MainWindowController implements Initializable {
         seriesSulfuras.setName("Sulfuras");
         seriesVest.setName("Vest");
 
-        for(int i =0;i<=maxSellIn;i++){
-            if(atLeastOne(itemslist,i)){
+        for (int i = -10; i <= maxSellIn; i++) {
+            if (atLeastOne(itemslist, i)) {
                 String barName = String.valueOf(i);
-                seriesAgedBrie.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof AgedBrie)));
-                seriesBackstage.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof Backstage)));
-                seriesConjured.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof Conjured)));
-                seriesElixir.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof Elixir)));
-                seriesSulfuras.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof Sulfuras)));
-                seriesVest.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist,i, (item) -> item instanceof Vest)));
+                seriesAgedBrie.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist, i, (item) -> item instanceof AgedBrie)));
+                seriesBackstage.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist, i, (item) -> item instanceof Backstage)));
+                seriesConjured.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist, i, (item) -> item instanceof Conjured)));
+                seriesElixir.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist, i, (item) -> item instanceof Elixir)));
+                seriesSulfuras.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist, i, (item) -> item instanceof Sulfuras)));
+                seriesVest.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist, i, (item) -> item instanceof Vest)));
 
             }
         }

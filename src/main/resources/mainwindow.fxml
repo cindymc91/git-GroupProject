@@ -3,10 +3,10 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -19,12 +19,12 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.7245441795231417" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.MainWindowController">
+<SplitPane dividerPositions="0.8061797752808989" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="972.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.MainWindowController">
     <items>
-        <AnchorPane maxWidth="470.0" prefHeight="943.0" prefWidth="470.0">
+        <AnchorPane maxWidth="665.0" prefHeight="752.0" prefWidth="665.0">
             <children>
                 <ListView fx:id="itemsListView" layoutX="14.0" layoutY="5.0" prefHeight="230.0" prefWidth="262.0" />
-                <PieChart fx:id="pieChart" layoutX="6.0" layoutY="244.0" prefHeight="230.0" prefWidth="491.0" />
+                <PieChart fx:id="pieChart" layoutX="6.0" layoutY="244.0" legendSide="RIGHT" prefHeight="230.0" prefWidth="616.0" />
                 <GridPane layoutX="329.0" layoutY="5.0" prefHeight="230.0" prefWidth="166.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -78,15 +78,15 @@
                         <DatePicker fx:id="creationDateDatePicker" disable="true" GridPane.rowIndex="7" />
                     </children>
                 </GridPane>
-                <StackedBarChart fx:id="barChartSellIn" layoutY="496.0" prefHeight="230.0" prefWidth="250.0">
+                <StackedBarChart fx:id="barChartSellIn" layoutX="14.0" layoutY="496.0" legendSide="RIGHT" prefHeight="230.0" prefWidth="550.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis side="LEFT"/>
+                        <NumberAxis side="LEFT" />
                     </yAxis>
                 </StackedBarChart>
-                <BarChart fx:id="barChartCreationDate" layoutX="252.0" layoutY="495.0" prefHeight="230.0" prefWidth="250.0">
+                <BarChart fx:id="barChartCreationDate" layoutX="14.0" layoutY="726.0" legendSide="RIGHT" prefHeight="230.0" prefWidth="550.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -95,7 +95,7 @@
                     </yAxis>
                 </BarChart>
             </children></AnchorPane>
-        <AnchorPane prefHeight="558.0" prefWidth="38.0">
+        <AnchorPane prefHeight="970.0" prefWidth="247.0">
             <children>
                 <GridPane layoutX="17.0" layoutY="14.0" prefHeight="218.0" prefWidth="117.0">
                     <columnConstraints>
