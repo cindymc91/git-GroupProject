@@ -143,7 +143,7 @@ public class MainWindowController implements Initializable {
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //BarChart
+        //BarChart sellin
 
         int maxSellIn = checkMaxSellIn(itemslist);
         barChartSellIn.getXAxis().setLabel("Sell In");
@@ -160,6 +160,7 @@ public class MainWindowController implements Initializable {
         XYChart.Series seriesSulfuras = new XYChart.Series();
         XYChart.Series seriesVest = new XYChart.Series();
 
+        barChartSellIn.getData().clear();
 
         seriesAgedBrie.setName("Aged Brie");
         seriesBackstage.setName("Backstage");
@@ -180,11 +181,12 @@ public class MainWindowController implements Initializable {
 
             }
         }
-        barChartSellIn.getData().clear();
+
         barChartSellIn.getData().addAll(seriesAgedBrie, seriesBackstage, seriesConjured, seriesElixir, seriesSulfuras, seriesVest);
 
 
-        //2nd BarChart
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Barchart creationDate
         //Initialisation
         barChartCreationDate.getXAxis().setLabel("Creation Date");
         barChartCreationDate.getYAxis().setLabel("Quantity");
@@ -216,7 +218,7 @@ public class MainWindowController implements Initializable {
             series2.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist,String.valueOf(d))));
         }
 
-        //Ajoute toutes les donnes de series2 dans le barchart
+        //Ajoute toutes les données de series2 dans le barchart
         barChartCreationDate.getData().addAll(series2);
 
     }
