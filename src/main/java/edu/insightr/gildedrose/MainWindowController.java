@@ -138,7 +138,7 @@ public class MainWindowController implements Initializable {
                 pieChartDataOk.add(p);
             }
         }
-        pieChart.setData(pieChartData);
+        pieChart.setData(pieChartDataOk);
         pieChart.setStartAngle(90);
 
 
