@@ -83,7 +83,7 @@
                         <CategoryAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis side="LEFT" />
+                        <NumberAxis side="LEFT"/>
                     </yAxis>
                 </StackedBarChart>
                 <BarChart fx:id="barChartCreationDate" layoutX="252.0" layoutY="495.0" prefHeight="230.0" prefWidth="250.0">

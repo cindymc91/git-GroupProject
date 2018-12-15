@@ -147,6 +147,10 @@ public class MainWindowController implements Initializable {
 
         int maxSellIn = checkMaxSellIn(itemslist);
         barChartSellIn.getXAxis().setLabel("Sell In");
+        barChartSellIn.getYAxis().setAutoRanging(false);
+        NumberAxis tmp = (NumberAxis)barChartSellIn.getYAxis();
+        tmp.setLowerBound(0);
+        tmp.setUpperBound(_countItemBySellIn(itemslist, checkNumberMaxItemBySellin(itemslist, maxSellIn)) + 2);
         barChartSellIn.getYAxis().setLabel("Quantity");
 
         XYChart.Series seriesAgedBrie = new XYChart.Series();
@@ -155,7 +159,7 @@ public class MainWindowController implements Initializable {
         XYChart.Series seriesElixir = new XYChart.Series();
         XYChart.Series seriesSulfuras = new XYChart.Series();
         XYChart.Series seriesVest = new XYChart.Series();
-        barChartSellIn.getData().clear();
+
 
         seriesAgedBrie.setName("Aged Brie");
         seriesBackstage.setName("Backstage");
@@ -176,6 +180,7 @@ public class MainWindowController implements Initializable {
 
             }
         }
+        barChartSellIn.getData().clear();
         barChartSellIn.getData().addAll(seriesAgedBrie, seriesBackstage, seriesConjured, seriesElixir, seriesSulfuras, seriesVest);
 
 
@@ -226,15 +231,41 @@ public class MainWindowController implements Initializable {
         return count;
     }
 
-    private int checkMaxSellIn(ObservableList<Item> items){
-        int max=0;
-        for (Item i :items) {
-            if (i.getSellIn() > max){
+    //Retourne la valeur max de sellin possible
+    private int checkMaxSellIn(ObservableList<Item> items) {
+        int max = 0;
+        for (Item i : items) {
+            if (i.getSellIn() > max) {
                 max = i.getSellIn();
             }
         }
         return max;
     }
+
+    //Retourne le sellin qui contient le plus d'item
+    private int checkNumberMaxItemBySellin(ObservableList<Item> items, int sellinMax) {
+        int max = -1;
+        int resultSellin = 0;
+        int numberItem = -1;
+        for (int k = 0; k < sellinMax; k++) {
+            for (Item i : items) {
+                if (atLeastOne(items, k)) {
+                    if (i.getSellIn() == k) {
+                        numberItem++;
+                    }
+                }
+            }
+            if (numberItem > max) {
+                max = numberItem;
+                numberItem = 0;
+                resultSellin = k;
+            }
+        }
+        return resultSellin;
+
+    }
+
+
 
     //Renvoie true s'il y a au moins un item pour le sellin indiqué
     private boolean atLeastOne(ObservableList<Item> items, int sellIn) {
@@ -255,6 +286,19 @@ public class MainWindowController implements Initializable {
                     count++;
                 }
             }
+        }
+        return count;
+    }
+
+    //Fonction qui compte cb il y a d'item pour le sellin indiqué, sans prendre en compte le type
+    private int _countItemBySellIn(ObservableList<Item> items,int sellIn){
+        int count =0;
+        for (Item i :items) {
+
+                if (i.getSellIn() == sellIn){
+                    count++;
+                }
+
         }
         return count;
     }
