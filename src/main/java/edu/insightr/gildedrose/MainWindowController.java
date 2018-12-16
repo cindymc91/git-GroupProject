@@ -190,17 +190,17 @@ public class MainWindowController implements Initializable {
                 numberV += countItemBySellIn(itemslist, i, (item) -> item instanceof Vest);
             }
         }
-        if(numberAb != 0)
+        if (numberAb != 0)
             barChartSellIn.getData().add(seriesAgedBrie);
-        if(numberBs != 0)
+        if (numberBs != 0)
             barChartSellIn.getData().add(seriesBackstage);
-        if(numberC != 0)
+        if (numberC != 0)
             barChartSellIn.getData().add(seriesConjured);
-        if(numberE != 0)
+        if (numberE != 0)
             barChartSellIn.getData().add(seriesElixir);
-        if(numberS != 0)
+        if (numberS != 0)
             barChartSellIn.getData().add(seriesSulfuras);
-        if(numberV != 0)
+        if (numberV != 0)
             barChartSellIn.getData().add(seriesVest);
 
         //barChartSellIn.getData().addAll(seriesAgedBrie, seriesBackstage, seriesConjured, seriesElixir, seriesSulfuras, seriesVest);
@@ -211,8 +211,8 @@ public class MainWindowController implements Initializable {
         //Initialisation
         barChartCreationDate.getXAxis().setLabel("Creation Date");
         barChartCreationDate.getYAxis().setLabel("Quantity");
+        barChartCreationDate.getYAxis().setAutoRanging(false);
         //XYChart.Series series2 = new XYChart.Series();
-        barChartCreationDate.getData().clear();
         //series2.setName("All items");
 
         XYChart.Series series2AgedBrie = new XYChart.Series();
@@ -231,6 +231,13 @@ public class MainWindowController implements Initializable {
         series2Sulfuras.setName("Sulfuras");
         series2Vest.setName("Vest");
 
+        int number2Ab = 0;
+        int number2Bs = 0;
+        int number2C = 0;
+        int number2E = 0;
+        int number2S = 0;
+        int number2V = 0;
+
         //On recupere dans une liste les DIFFERENTES DATES
         //Chaque date est donc contenue une et une unique fois dans la liste
         ObservableList<Date> itemsDate = FXCollections.observableArrayList();
@@ -244,9 +251,6 @@ public class MainWindowController implements Initializable {
         }
 
 
-
-
-
         //Pour chaque date, compte le nombre de date dans itemsList et ajoute la donnée dans series2
         for (Date d : itemsDate) {
             if (atLeastOne(itemslist, String.valueOf(d))) {
@@ -258,11 +262,36 @@ public class MainWindowController implements Initializable {
                 series2Elixir.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist, barName, (item) -> item instanceof Elixir)));
                 series2Sulfuras.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist, barName, (item) -> item instanceof Sulfuras)));
                 series2Vest.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist, barName, (item) -> item instanceof Vest)));
+
+                number2Ab += countItemByCreationDate(itemslist, barName, (item) -> item instanceof AgedBrie);
+                number2Bs += countItemByCreationDate(itemslist, barName, (item) -> item instanceof Backstage);
+                number2C += countItemByCreationDate(itemslist, barName, (item) -> item instanceof Conjured);
+                number2E += countItemByCreationDate(itemslist, barName, (item) -> item instanceof Elixir);
+                number2S += countItemByCreationDate(itemslist, barName, (item) -> item instanceof Sulfuras);
+                number2V += countItemByCreationDate(itemslist, barName, (item) -> item instanceof Vest);
             }
         }
 
+
+        NumberAxis tmp2 = (NumberAxis) barChartCreationDate.getYAxis();
+        tmp2.setLowerBound(0);
+        tmp2.setUpperBound(number2Ab+number2Bs+number2C+number2E+number2S+number2V+2);
+
+        if (number2Ab != 0)
+            barChartCreationDate.getData().add(series2AgedBrie);
+        if (number2Bs != 0)
+            barChartCreationDate.getData().add(series2Backstage);
+        if (number2C != 0)
+            barChartCreationDate.getData().add(series2Conjured);
+        if (number2E != 0)
+            barChartCreationDate.getData().add(series2Elixir);
+        if (number2S != 0)
+            barChartCreationDate.getData().add(series2Sulfuras);
+        if (number2V != 0)
+            barChartCreationDate.getData().add(series2Vest);
+
         //Ajoute toutes les données de series2 dans le barchart
-        barChartCreationDate.getData().addAll(series2AgedBrie, series2Backstage, series2Conjured, series2Elixir, series2Sulfuras, series2Vest);
+        //barChartCreationDate.getData().addAll(series2AgedBrie, series2Backstage, series2Conjured, series2Elixir, series2Sulfuras, series2Vest);
 
     }
 
@@ -382,7 +411,6 @@ public class MainWindowController implements Initializable {
         }
         return count;
     }
-
 
     public PieChart.Data createPieChartItem(String name, int count) {
         return new PieChart.Data(name, count);
