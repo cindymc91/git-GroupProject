@@ -66,6 +66,10 @@ public class MainWindowController implements Initializable {
     StackedBarChart barChartCreationDate;
     @FXML
     DatePicker creationDateDatePicker;
+    @FXML
+    ListView<Item> listeAchats;
+    @FXML
+    ListView<Item> listeVentes;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,7 +83,7 @@ public class MainWindowController implements Initializable {
         addMode = false;
         auditTrail = new AuditTrail();
 
-        for(Item i : inv.getItems()){
+        for (Item i : inv.getItems()) {
             auditTrail.addToAchats(i);
         }
 
@@ -282,7 +286,7 @@ public class MainWindowController implements Initializable {
 
         NumberAxis tmp2 = (NumberAxis) barChartCreationDate.getYAxis();
         tmp2.setLowerBound(0);
-        tmp2.setUpperBound(number2Ab+number2Bs+number2C+number2E+number2S+number2V+2);
+        tmp2.setUpperBound(number2Ab + number2Bs + number2C + number2E + number2S + number2V + 2);
 
         if (number2Ab != 0)
             barChartCreationDate.getData().add(series2AgedBrie);
