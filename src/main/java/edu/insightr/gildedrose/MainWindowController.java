@@ -78,6 +78,11 @@ public class MainWindowController implements Initializable {
         }
         addMode = false;
         auditTrail = new AuditTrail();
+
+        for(Item i : inv.getItems()){
+            auditTrail.addToAchats(i);
+        }
+
         fetchItems();
     }
 
@@ -601,6 +606,7 @@ public class MainWindowController implements Initializable {
                             agedBrie = new AgedBrie(name, sellin, quality, date);
                         else agedBrie = new AgedBrie(name, sellin, quality);
                         inv.addItem(agedBrie);
+                        auditTrail.addToAchats(agedBrie);
                         break;
                     case "Backstage":
                         Backstage backstage;
@@ -608,6 +614,7 @@ public class MainWindowController implements Initializable {
                             backstage = new Backstage(name, sellin, quality, date);
                         else backstage = new Backstage(name, sellin, quality);
                         inv.addItem(backstage);
+                        auditTrail.addToAchats(backstage);
                         break;
                     case "Conjured":
                         Conjured conjured;
@@ -615,6 +622,7 @@ public class MainWindowController implements Initializable {
                             conjured = new Conjured(name, sellin, quality, date);
                         else conjured = new Conjured(name, sellin, quality);
                         inv.addItem(conjured);
+                        auditTrail.addToAchats(conjured);
                         break;
                     case "Elixir":
                         Elixir elixir;
@@ -622,6 +630,7 @@ public class MainWindowController implements Initializable {
                             elixir = new Elixir(name, sellin, quality, date);
                         else elixir = new Elixir(name, sellin, quality);
                         inv.addItem(elixir);
+                        auditTrail.addToAchats(elixir);
                         break;
                     case "Sulfuras":
                         Sulfuras sulfuras;
@@ -629,6 +638,7 @@ public class MainWindowController implements Initializable {
                             sulfuras = new Sulfuras(name, sellin, quality, date);
                         else sulfuras = new Sulfuras(name, sellin, quality);
                         inv.addItem(sulfuras);
+                        auditTrail.addToAchats(sulfuras);
                         break;
                     case "Vest":
                         Vest vest;
@@ -636,6 +646,7 @@ public class MainWindowController implements Initializable {
                             vest = new Vest(name, sellin, quality, date);
                         else vest = new Vest(name, sellin, quality);
                         inv.addItem(vest);
+                        auditTrail.addToAchats(vest);
                         break;
                 }
             }
