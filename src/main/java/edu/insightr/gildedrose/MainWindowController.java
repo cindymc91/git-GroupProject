@@ -15,9 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.function.Function;
 
 import org.json.simple.JSONArray;
@@ -169,6 +167,13 @@ public class MainWindowController implements Initializable {
         seriesSulfuras.setName("Sulfuras");
         seriesVest.setName("Vest");
 
+        int numberAb = 0;
+        int numberBs = 0;
+        int numberC = 0;
+        int numberE = 0;
+        int numberS = 0;
+        int numberV = 0;
+
         for (int i = -10; i <= maxSellIn; i++) {
             if (atLeastOne(itemslist, i)) {
                 String barName = String.valueOf(i);
@@ -179,10 +184,28 @@ public class MainWindowController implements Initializable {
                 seriesSulfuras.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist, i, (item) -> item instanceof Sulfuras)));
                 seriesVest.getData().add(new XYChart.Data(barName, countItemBySellIn(itemslist, i, (item) -> item instanceof Vest)));
 
+                numberAb += countItemBySellIn(itemslist, i, (item) -> item instanceof AgedBrie);
+                numberBs += countItemBySellIn(itemslist, i, (item) -> item instanceof Backstage);
+                numberC += countItemBySellIn(itemslist, i, (item) -> item instanceof Conjured);
+                numberE += countItemBySellIn(itemslist, i, (item) -> item instanceof Elixir);
+                numberS += countItemBySellIn(itemslist, i, (item) -> item instanceof Sulfuras);
+                numberV += countItemBySellIn(itemslist, i, (item) -> item instanceof Vest);
             }
         }
+        if(numberAb != 0)
+            barChartSellIn.getData().add(seriesAgedBrie);
+        if(numberBs != 0)
+            barChartSellIn.getData().add(seriesBackstage);
+        if(numberC != 0)
+            barChartSellIn.getData().add(seriesConjured);
+        if(numberE != 0)
+            barChartSellIn.getData().add(seriesElixir);
+        if(numberS != 0)
+            barChartSellIn.getData().add(seriesSulfuras);
+        if(numberV != 0)
+            barChartSellIn.getData().add(seriesVest);
 
-        barChartSellIn.getData().addAll(seriesAgedBrie, seriesBackstage, seriesConjured, seriesElixir, seriesSulfuras, seriesVest);
+        //barChartSellIn.getData().addAll(seriesAgedBrie, seriesBackstage, seriesConjured, seriesElixir, seriesSulfuras, seriesVest);
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
