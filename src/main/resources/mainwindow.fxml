@@ -86,14 +86,14 @@
                         <NumberAxis side="LEFT" />
                     </yAxis>
                 </StackedBarChart>
-                <BarChart fx:id="barChartCreationDate" layoutX="588.0" layoutY="496.0" legendSide="RIGHT" prefHeight="230.0" prefWidth="550.0">
+                <StackedBarChart fx:id="barChartCreationDate" layoutX="588.0" layoutY="496.0" legendSide="RIGHT" prefHeight="230.0" prefWidth="550.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                         <NumberAxis side="LEFT" />
                     </yAxis>
-                </BarChart>
+                </StackedBarChart>
             </children></AnchorPane>
         <AnchorPane prefHeight="736.0" prefWidth="24.0">
             <children>

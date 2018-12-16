@@ -62,7 +62,7 @@ public class MainWindowController implements Initializable {
     @FXML
     Label idNumberLabel;
     @FXML
-    BarChart barChartCreationDate;
+    StackedBarChart barChartCreationDate;
     @FXML
     DatePicker creationDateDatePicker;
 
@@ -211,9 +211,9 @@ public class MainWindowController implements Initializable {
         //Initialisation
         barChartCreationDate.getXAxis().setLabel("Creation Date");
         barChartCreationDate.getYAxis().setLabel("Quantity");
-        XYChart.Series series2 = new XYChart.Series();
+        //XYChart.Series series2 = new XYChart.Series();
         barChartCreationDate.getData().clear();
-        series2.setName("All items");
+        //series2.setName("All items");
 
         XYChart.Series series2AgedBrie = new XYChart.Series();
         XYChart.Series series2Backstage = new XYChart.Series();
@@ -242,6 +242,10 @@ public class MainWindowController implements Initializable {
                 itemsDate.add(i.getCreationDate());
             }
         }
+
+
+
+
 
         //Pour chaque date, compte le nombre de date dans itemsList et ajoute la donnée dans series2
         for (Date d : itemsDate) {
@@ -303,7 +307,6 @@ public class MainWindowController implements Initializable {
             }
         }
         return resultSellin;
-
     }
 
 
