@@ -88,7 +88,7 @@ public class MainWindowController implements Initializable {
             typeComboBox.setDisable(true);
             deleteButton.setDisable(false);
             editButton.setDisable(false);
-            addMode=false;
+            addMode = false;
             idNumberLabel.setText(Integer.toString(item.getId()));
             nameTF.setText(item.getName());
             sellinTF.setText(Integer.toString(item.getSellIn()));
@@ -106,12 +106,12 @@ public class MainWindowController implements Initializable {
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         //count of each Item
-        int nbAgedBrie = countItem(itemslist,(item) -> item instanceof AgedBrie);
-        int nbBackstage = countItem(itemslist,(item) -> item instanceof Backstage);
-        int nbConjured = countItem(itemslist,(item) -> item instanceof Conjured);
-        int nbSulfuras = countItem(itemslist,(item) -> item instanceof Sulfuras);
-        int nbElixir = countItem(itemslist,(item) -> item instanceof Elixir);
-        int nbVest = countItem(itemslist,(item) -> item instanceof Vest);
+        int nbAgedBrie = countItem(itemslist, (item) -> item instanceof AgedBrie);
+        int nbBackstage = countItem(itemslist, (item) -> item instanceof Backstage);
+        int nbConjured = countItem(itemslist, (item) -> item instanceof Conjured);
+        int nbSulfuras = countItem(itemslist, (item) -> item instanceof Sulfuras);
+        int nbElixir = countItem(itemslist, (item) -> item instanceof Elixir);
+        int nbVest = countItem(itemslist, (item) -> item instanceof Vest);
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,8 +119,8 @@ public class MainWindowController implements Initializable {
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
                         createPieChartItem("AgedBrie", nbAgedBrie),
-                        createPieChartItem("Backstage",nbBackstage),
-                        createPieChartItem("Conjured",nbConjured),
+                        createPieChartItem("Backstage", nbBackstage),
+                        createPieChartItem("Conjured", nbConjured),
                         createPieChartItem("Elixir", nbElixir),
                         createPieChartItem("Sulfuras", nbSulfuras),
                         createPieChartItem("Vest", nbVest)
@@ -129,10 +129,8 @@ public class MainWindowController implements Initializable {
         //To avoid errors with the pie chart, we create a new one, pieChartDataOk, with all elements
         //that are different from 0
         ObservableList<PieChart.Data> pieChartDataOk = FXCollections.observableArrayList();
-        for (PieChart.Data p : pieChartData)
-        {
-            if(p.getPieValue()!=0)
-            {
+        for (PieChart.Data p : pieChartData) {
+            if (p.getPieValue() != 0) {
                 pieChartDataOk.add(p);
             }
         }
@@ -146,7 +144,7 @@ public class MainWindowController implements Initializable {
         int maxSellIn = checkMaxSellIn(itemslist);
         barChartSellIn.getXAxis().setLabel("Sell In");
         barChartSellIn.getYAxis().setAutoRanging(false);
-        NumberAxis tmp = (NumberAxis)barChartSellIn.getYAxis();
+        NumberAxis tmp = (NumberAxis) barChartSellIn.getYAxis();
         tmp.setLowerBound(0);
         tmp.setUpperBound(_countItemBySellIn(itemslist, checkNumberMaxItemBySellin(itemslist, maxSellIn)) + 2);
         barChartSellIn.getYAxis().setLabel("Quantity");
@@ -217,39 +215,57 @@ public class MainWindowController implements Initializable {
         barChartCreationDate.getData().clear();
         series2.setName("All items");
 
+        XYChart.Series series2AgedBrie = new XYChart.Series();
+        XYChart.Series series2Backstage = new XYChart.Series();
+        XYChart.Series series2Conjured = new XYChart.Series();
+        XYChart.Series series2Elixir = new XYChart.Series();
+        XYChart.Series series2Sulfuras = new XYChart.Series();
+        XYChart.Series series2Vest = new XYChart.Series();
+
+        barChartCreationDate.getData().clear();
+
+        series2AgedBrie.setName("Aged Brie");
+        series2Backstage.setName("Backstage");
+        series2Conjured.setName("Conjured");
+        series2Elixir.setName("Elixir");
+        series2Sulfuras.setName("Sulfuras");
+        series2Vest.setName("Vest");
+
         //On recupere dans une liste les DIFFERENTES DATES
         //Chaque date est donc contenue une et une unique fois dans la liste
         ObservableList<Date> itemsDate = FXCollections.observableArrayList();
-        for (Item i :itemslist)
-        {
-            if(itemsDate.contains(i.getCreationDate()))
-            {
+        for (Item i : itemslist) {
+            if (itemsDate.contains(i.getCreationDate())) {
                 //Si la liste contient la date ne fais rien
-            }
-            else
-            {
+            } else {
                 //Sinon ajoute la date
                 itemsDate.add(i.getCreationDate());
             }
         }
 
         //Pour chaque date, compte le nombre de date dans itemsList et ajoute la donnée dans series2
-        for(Date d :itemsDate)
-        {
-            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            String barName = formatter.format(d);
-            series2.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist,String.valueOf(d))));
+        for (Date d : itemsDate) {
+            if (atLeastOne(itemslist, String.valueOf(d))) {
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String barName = formatter.format(d);
+                series2AgedBrie.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist, barName, (item) -> item instanceof AgedBrie)));
+                series2Backstage.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist, barName, (item) -> item instanceof Backstage)));
+                series2Conjured.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist, barName, (item) -> item instanceof Conjured)));
+                series2Elixir.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist, barName, (item) -> item instanceof Elixir)));
+                series2Sulfuras.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist, barName, (item) -> item instanceof Sulfuras)));
+                series2Vest.getData().add(new XYChart.Data(barName, countItemByCreationDate(itemslist, barName, (item) -> item instanceof Vest)));
+            }
         }
 
         //Ajoute toutes les données de series2 dans le barchart
-        barChartCreationDate.getData().addAll(series2);
+        barChartCreationDate.getData().addAll(series2AgedBrie, series2Backstage, series2Conjured, series2Elixir, series2Sulfuras, series2Vest);
 
     }
 
-    private int countItem(ObservableList<Item> items, Function<Item,Boolean> func){
+    private int countItem(ObservableList<Item> items, Function<Item, Boolean> func) {
         int count = 0;
-        for (Item i : items){
-            if (func.apply(i)){
+        for (Item i : items) {
+            if (func.apply(i)) {
                 count++;
             }
         }
@@ -291,23 +307,22 @@ public class MainWindowController implements Initializable {
     }
 
 
-
     //Renvoie true s'il y a au moins un item pour le sellin indiqué
     private boolean atLeastOne(ObservableList<Item> items, int sellIn) {
         for (Item i : items) {
             if (i.getSellIn() == sellIn) {
-               return true;
+                return true;
             }
         }
         return false;
     }
 
     //Compte le nombre d'item de chaque type par date de Sellin
-    private int countItemBySellIn(ObservableList<Item> items,int sellIn, Function<Item,Boolean> func){
-        int count =0;
-        for (Item i :items) {
-            if(func.apply(i)){
-                if (i.getSellIn() == sellIn){
+    private int countItemBySellIn(ObservableList<Item> items, int sellIn, Function<Item, Boolean> func) {
+        int count = 0;
+        for (Item i : items) {
+            if (func.apply(i)) {
+                if (i.getSellIn() == sellIn) {
                     count++;
                 }
             }
@@ -316,23 +331,49 @@ public class MainWindowController implements Initializable {
     }
 
     //Fonction qui compte cb il y a d'item pour le sellin indiqué, sans prendre en compte le type
-    private int _countItemBySellIn(ObservableList<Item> items,int sellIn){
-        int count =0;
-        for (Item i :items) {
+    private int _countItemBySellIn(ObservableList<Item> items, int sellIn) {
+        int count = 0;
+        for (Item i : items) {
 
-                if (i.getSellIn() == sellIn){
-                    count++;
-                }
+            if (i.getSellIn() == sellIn) {
+                count++;
+            }
 
         }
         return count;
     }
 
-    private int countItemByCreationDate(ObservableList<Item> items, String creationDate){
-        int count =0;
-        for (Item i :items) {
+
+    private boolean atLeastOne(ObservableList<Item> items, String creationDate) {
+        for (Item i : items) {
             String dateItem = String.valueOf(i.getCreationDate());
-            if (dateItem.equals(creationDate)){
+            if (dateItem.equals(creationDate)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Compte le nombre d'item de chaque type par date de creation
+    private int countItemByCreationDate(ObservableList<Item> items, String creationDate, Function<Item, Boolean> func) {
+        int count = 0;
+        for (Item i : items) {
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String dateItem = formatter.format(i.getCreationDate());
+            if (func.apply(i)) {
+                if (dateItem.equals(creationDate)) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private int countItemByCreationDate(ObservableList<Item> items, String creationDate) {
+        int count = 0;
+        for (Item i : items) {
+            String dateItem = String.valueOf(i.getCreationDate());
+            if (dateItem.equals(creationDate)) {
                 count++;
             }
         }
@@ -340,7 +381,7 @@ public class MainWindowController implements Initializable {
     }
 
 
-    public PieChart.Data createPieChartItem( String name, int count) {
+    public PieChart.Data createPieChartItem(String name, int count) {
         return new PieChart.Data(name, count);
     }
 
@@ -354,7 +395,7 @@ public class MainWindowController implements Initializable {
         allBlank();
     }
 
-    public void onEdit(){
+    public void onEdit() {
         saveButton.setDisable(false);
         nameTF.setDisable(false);
         sellinTF.setDisable(false);
@@ -365,89 +406,87 @@ public class MainWindowController implements Initializable {
         cancelButton.setDisable(false);
     }
 
-    public void onAdd(){
-        addMode=true;
+    public void onAdd() {
+        addMode = true;
         allBlank();
         saveButton.setDisable(false);
         nameTF.setDisable(false);
         sellinTF.setDisable(false);
         qualityTF.setDisable(false);
         typeComboBox.setDisable(false);
-        typeComboBox.getSelectionModel().select(-1);;
+        typeComboBox.getSelectionModel().select(-1);
+        ;
         cancelButton.setDisable(false);
     }
 
-    public void onSave(){
+    public void onSave() {
         String name = nameTF.getText();
         String type = (String) typeComboBox.getValue();
         int sellin = 0;
         int quality = 0;
-        try
-        {
+        try {
             sellin = Integer.parseInt(sellinTF.getText());
-        } catch(Exception e){sellin = 0;}
-        try
-        {
+        } catch (Exception e) {
+            sellin = 0;
+        }
+        try {
             quality = Integer.parseInt(qualityTF.getText());
-        }catch (Exception e){quality =0;}
-        if(addMode == true)
-        {
-            switch(type)
-            {
+        } catch (Exception e) {
+            quality = 0;
+        }
+        if (addMode == true) {
+            switch (type) {
                 case "AgedBrie":
-                    AgedBrie agedBrie = new AgedBrie(name,sellin,quality);
+                    AgedBrie agedBrie = new AgedBrie(name, sellin, quality);
                     inv.addItem(agedBrie);
                     break;
                 case "Backstage":
-                    Backstage backstage = new Backstage(name,sellin,quality);
+                    Backstage backstage = new Backstage(name, sellin, quality);
                     inv.addItem(backstage);
                     break;
                 case "Conjured":
-                    Conjured conjured = new Conjured(name,sellin,quality);
+                    Conjured conjured = new Conjured(name, sellin, quality);
                     inv.addItem(conjured);
                     break;
                 case "Elixir":
-                    Elixir elixir = new Elixir(name,sellin,quality);
+                    Elixir elixir = new Elixir(name, sellin, quality);
                     inv.addItem(elixir);
                     break;
                 case "Sulfuras":
-                    Sulfuras sulfuras = new Sulfuras(name,sellin,quality);
+                    Sulfuras sulfuras = new Sulfuras(name, sellin, quality);
                     inv.addItem(sulfuras);
                     break;
                 case "Vest":
-                    Vest vest = new Vest(name,sellin,quality);
+                    Vest vest = new Vest(name, sellin, quality);
                     inv.addItem(vest);
                     break;
             }
-        }
-        else
-        {
+        } else {
             int id = Integer.parseInt(idNumberLabel.getText());
-            switch(type)
-            {
+            switch (type) {
                 case "AgedBrie":
-                    AgedBrie ab = new AgedBrie(name,sellin,quality);
-                    inv.editItem(id,ab);
+                    AgedBrie ab = new AgedBrie(name, sellin, quality);
+                    inv.editItem(id, ab);
                     break;
                 case "Backstage":
-                    Backstage bs = new Backstage(name,sellin,quality);
-                    inv.editItem(id,bs);
+                    Backstage bs = new Backstage(name, sellin, quality);
+                    inv.editItem(id, bs);
                     break;
                 case "Conjured":
-                    Conjured conjured = new Conjured(name,sellin,quality);
-                    inv.editItem(id,conjured);
+                    Conjured conjured = new Conjured(name, sellin, quality);
+                    inv.editItem(id, conjured);
                     break;
                 case "Elixir":
-                    Elixir elix = new Elixir(name,sellin,quality);
-                    inv.editItem(id,elix);
+                    Elixir elix = new Elixir(name, sellin, quality);
+                    inv.editItem(id, elix);
                     break;
                 case "Sulfuras":
-                    Sulfuras sulf = new Sulfuras(name,sellin,quality);
-                    inv.editItem(id,sulf);
+                    Sulfuras sulf = new Sulfuras(name, sellin, quality);
+                    inv.editItem(id, sulf);
                     break;
                 case "Vest":
-                    Vest vest = new Vest(name,sellin,quality);
-                    inv.editItem(id,vest);
+                    Vest vest = new Vest(name, sellin, quality);
+                    inv.editItem(id, vest);
                     break;
             }
             //Item newItem = new Item(name,sellin,quality);
@@ -459,13 +498,13 @@ public class MainWindowController implements Initializable {
         deleteButton.setDisable(true);
     }
 
-    public void onUpdate(){
+    public void onUpdate() {
         inv.updateSellin();
         inv.updateQuality();
         fetchItems();
     }
 
-    public void onCancel(){
+    public void onCancel() {
         nameTF.setDisable(true);
         sellinTF.setDisable(true);
         qualityTF.setDisable(true);
@@ -474,29 +513,26 @@ public class MainWindowController implements Initializable {
         editButton.setDisable(true);
         cancelButton.setDisable(true);
 
-        if(addMode==true)
-        {
+        if (addMode == true) {
             allBlank();
-        }
-        else
-        {
+        } else {
             fetchItems();
         }
     }
 
-    public void onLoad(){
+    public void onLoad() {
         JFileChooser fc = new JFileChooser();
         int returnVal = fc.showOpenDialog(null);
 
         File file = null;
-        if(returnVal == JFileChooser.APPROVE_OPTION){
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
             file = fc.getSelectedFile();
             System.out.println("Opening " + file.getName());
         }
 
         JSONParser parser = new JSONParser();
 
-        try{
+        try {
             Object obj = parser.parse(new FileReader(file));
 
             JSONObject jsonObject = (JSONObject) obj;
@@ -508,69 +544,67 @@ public class MainWindowController implements Initializable {
                 JSONObject tempObj = iterator.next();
                 String name = (String) tempObj.get("name");
                 String type = (String) tempObj.get("type");
-                int quality = toIntExact((long)tempObj.get("quality"));
-                int sellin = toIntExact((long)tempObj.get("sellIn"));
+                int quality = toIntExact((long) tempObj.get("quality"));
+                int sellin = toIntExact((long) tempObj.get("sellIn"));
                 boolean hasDate = false;
                 Date date = new Date();
-                if(tempObj.containsKey("creationDate"))
-                {
+                if (tempObj.containsKey("creationDate")) {
                     hasDate = true;
-                    date = new SimpleDateFormat("dd-MM-yyyy").parse((String)tempObj.get("creationDate"));
+                    date = new SimpleDateFormat("dd-MM-yyyy").parse((String) tempObj.get("creationDate"));
                 }
 
-                switch(type)
-                {
+                switch (type) {
                     case "AgedBrie":
                         AgedBrie agedBrie;
-                        if(hasDate)
-                            agedBrie = new AgedBrie(name,sellin,quality, date);
-                        else agedBrie = new AgedBrie(name,sellin,quality);
+                        if (hasDate)
+                            agedBrie = new AgedBrie(name, sellin, quality, date);
+                        else agedBrie = new AgedBrie(name, sellin, quality);
                         inv.addItem(agedBrie);
                         break;
                     case "Backstage":
                         Backstage backstage;
-                        if(hasDate)
-                            backstage = new Backstage(name,sellin,quality, date);
-                        else backstage = new Backstage(name,sellin,quality);
+                        if (hasDate)
+                            backstage = new Backstage(name, sellin, quality, date);
+                        else backstage = new Backstage(name, sellin, quality);
                         inv.addItem(backstage);
                         break;
                     case "Conjured":
                         Conjured conjured;
-                        if(hasDate)
-                            conjured = new Conjured(name,sellin,quality, date);
-                        else conjured = new Conjured(name,sellin,quality);
+                        if (hasDate)
+                            conjured = new Conjured(name, sellin, quality, date);
+                        else conjured = new Conjured(name, sellin, quality);
                         inv.addItem(conjured);
                         break;
                     case "Elixir":
                         Elixir elixir;
-                        if(hasDate)
-                            elixir = new Elixir(name,sellin,quality, date);
-                        else elixir = new Elixir(name,sellin,quality);
+                        if (hasDate)
+                            elixir = new Elixir(name, sellin, quality, date);
+                        else elixir = new Elixir(name, sellin, quality);
                         inv.addItem(elixir);
                         break;
                     case "Sulfuras":
                         Sulfuras sulfuras;
-                        if(hasDate)
-                            sulfuras = new Sulfuras(name,sellin,quality, date);
-                        else sulfuras = new Sulfuras(name,sellin,quality);
+                        if (hasDate)
+                            sulfuras = new Sulfuras(name, sellin, quality, date);
+                        else sulfuras = new Sulfuras(name, sellin, quality);
                         inv.addItem(sulfuras);
                         break;
                     case "Vest":
                         Vest vest;
-                        if(hasDate)
-                            vest = new Vest(name,sellin,quality, date);
-                        else vest = new Vest(name,sellin,quality);
+                        if (hasDate)
+                            vest = new Vest(name, sellin, quality, date);
+                        else vest = new Vest(name, sellin, quality);
                         inv.addItem(vest);
                         break;
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         fetchItems();
     }
 
-    public void allBlank(){
+    public void allBlank() {
         nameTF.setText("");
         sellinTF.setText("");
         qualityTF.setText("");
