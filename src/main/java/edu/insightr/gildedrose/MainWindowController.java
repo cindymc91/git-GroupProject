@@ -75,6 +75,13 @@ public class MainWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         itemsListView.getSelectionModel().selectedItemProperty()
                 .addListener(e -> displayItemDetails(itemsListView.getSelectionModel().getSelectedItem()));
+
+        listeAchats.getSelectionModel().selectedItemProperty()
+                .addListener(e -> displayItemDetails(listeAchats.getSelectionModel().getSelectedItem()));
+
+        listeVentes.getSelectionModel().selectedItemProperty()
+                .addListener(e -> displayItemDetails(listeVentes.getSelectionModel().getSelectedItem()));
+
         try {
             inv = new Inventory();
         } catch (ParseException e) {
@@ -114,6 +121,9 @@ public class MainWindowController implements Initializable {
     private void fetchItems() {
         ObservableList<Item> itemslist = FXCollections.observableArrayList(inv.getItems());
         itemsListView.setItems(itemslist);
+
+        listeAchats.setItems(FXCollections.observableArrayList(auditTrail.getAchats()));
+        listeVentes.setItems(FXCollections.observableArrayList(auditTrail.getVentes()));
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         //count of each Item
