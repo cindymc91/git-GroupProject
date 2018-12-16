@@ -30,6 +30,7 @@ public class MainWindowController implements Initializable {
 
     private Inventory inv;
     private boolean addMode;
+    private AuditTrail auditTrail;
 
     @FXML
     ListView<Item> itemsListView;
@@ -76,6 +77,7 @@ public class MainWindowController implements Initializable {
             e.printStackTrace();
         }
         addMode = false;
+        auditTrail = new AuditTrail();
         fetchItems();
     }
 
@@ -419,6 +421,7 @@ public class MainWindowController implements Initializable {
     public void onDelete() {
         Item itemToDelete = inv.fetchItemById(Integer.parseInt(idNumberLabel.getText()));
         inv.deleteItem(itemToDelete);
+        auditTrail.addToVentes(itemToDelete);
         fetchItems();
         saveButton.setDisable(true);
         editButton.setDisable(true);
@@ -470,28 +473,35 @@ public class MainWindowController implements Initializable {
                 case "AgedBrie":
                     AgedBrie agedBrie = new AgedBrie(name, sellin, quality);
                     inv.addItem(agedBrie);
+                    auditTrail.addToAchats(agedBrie);
                     break;
                 case "Backstage":
                     Backstage backstage = new Backstage(name, sellin, quality);
                     inv.addItem(backstage);
+                    auditTrail.addToAchats(backstage);
                     break;
                 case "Conjured":
                     Conjured conjured = new Conjured(name, sellin, quality);
                     inv.addItem(conjured);
+                    auditTrail.addToAchats(conjured);
                     break;
                 case "Elixir":
                     Elixir elixir = new Elixir(name, sellin, quality);
                     inv.addItem(elixir);
+                    auditTrail.addToAchats(elixir);
                     break;
                 case "Sulfuras":
                     Sulfuras sulfuras = new Sulfuras(name, sellin, quality);
                     inv.addItem(sulfuras);
+                    auditTrail.addToAchats(sulfuras);
                     break;
                 case "Vest":
                     Vest vest = new Vest(name, sellin, quality);
                     inv.addItem(vest);
+                    auditTrail.addToAchats(vest);
                     break;
             }
+
         } else {
             int id = Integer.parseInt(idNumberLabel.getText());
             switch (type) {
