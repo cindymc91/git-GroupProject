@@ -4,6 +4,7 @@ import edu.insightr.gildedrose.Model.Inventory;
 import edu.insightr.gildedrose.Model.Item;
 import org.junit.Before;
 import org.junit.Test;
+import edu.insightr.gildedrose.Model.Elixir;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,10 +17,12 @@ public class InventoryTest {
     protected Inventory inv; //Toujours créer une instance de la classe à tester
     protected Item[] oldList;
 
+
     @Before
     public void setUp() throws ParseException {
         inv = new Inventory();
         oldList = inv.getItems(); //On définit l'ancienne liste ici, car c'est un préalable au test
+
     }
 
 
