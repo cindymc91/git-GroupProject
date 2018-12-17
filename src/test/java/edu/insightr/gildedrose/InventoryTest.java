@@ -1,5 +1,7 @@
 package edu.insightr.gildedrose;
 
+import edu.insightr.gildedrose.Model.Inventory;
+import edu.insightr.gildedrose.Model.Item;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -74,15 +76,7 @@ public class InventoryTest {
 
     //Testing:
     // "Conjured" items degrade in Quality twice as fast as normal items
-    @Test
-    public void testUpdateConjured() throws Exception {
-        inv.updateQuality();
-        for (int i = 0; i < inv.getItems().length; i++) {
-            if (oldList[i].getName().matches(".*Conjured.*")) {
-                assertEquals(oldList[i].getQuality() - 2, inv.getItems()[i].getQuality());
-            }
-        }
-    }
+
     /*public void testUpdateConjured() throws Exception {
         inv.updateQuality();
         for (int i = 0; i < inv.getItems().length; i++) {

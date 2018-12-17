@@ -1,5 +1,7 @@
 package edu.insightr.gildedrose;
 
+import edu.insightr.gildedrose.Model.Item;
+import edu.insightr.gildedrose.Model.Sulfuras;
 import org.junit.Before;
 import org.junit.Test;
 
