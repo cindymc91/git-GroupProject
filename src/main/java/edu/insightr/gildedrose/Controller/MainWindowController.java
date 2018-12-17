@@ -482,6 +482,7 @@ public class MainWindowController extends Application implements Initializable{
         sellinTF.setDisable(false);
         qualityTF.setDisable(false);
         typeComboBox.setDisable(false);
+        creationDateDatePicker.setDisable(false);
         typeComboBox.getSelectionModel().select(-1);
         ;
         cancelButton.setDisable(false);
@@ -502,35 +503,37 @@ public class MainWindowController extends Application implements Initializable{
         } catch (Exception e) {
             quality = 0;
         }
+        Date date = Date.from(creationDateDatePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+
         if (addMode == true) {
             switch (type) {
                 case "AgedBrie":
-                    AgedBrie agedBrie = new AgedBrie(name, sellin, quality);
+                    AgedBrie agedBrie = new AgedBrie(name, sellin, quality,date);
                     inv.addItem(agedBrie);
                     auditTrail.addToAchats(agedBrie);
                     break;
                 case "Backstage":
-                    Backstage backstage = new Backstage(name, sellin, quality);
+                    Backstage backstage = new Backstage(name, sellin, quality,date);
                     inv.addItem(backstage);
                     auditTrail.addToAchats(backstage);
                     break;
                 case "Conjured":
-                    Conjured conjured = new Conjured(name, sellin, quality);
+                    Conjured conjured = new Conjured(name, sellin, quality,date);
                     inv.addItem(conjured);
                     auditTrail.addToAchats(conjured);
                     break;
                 case "Elixir":
-                    Elixir elixir = new Elixir(name, sellin, quality);
+                    Elixir elixir = new Elixir(name, sellin, quality,date);
                     inv.addItem(elixir);
                     auditTrail.addToAchats(elixir);
                     break;
                 case "Sulfuras":
-                    Sulfuras sulfuras = new Sulfuras(name, sellin, quality);
+                    Sulfuras sulfuras = new Sulfuras(name, sellin, quality,date);
                     inv.addItem(sulfuras);
                     auditTrail.addToAchats(sulfuras);
                     break;
                 case "Vest":
-                    Vest vest = new Vest(name, sellin, quality);
+                    Vest vest = new Vest(name, sellin, quality,date);
                     inv.addItem(vest);
                     auditTrail.addToAchats(vest);
                     break;
@@ -571,6 +574,7 @@ public class MainWindowController extends Application implements Initializable{
         saveButton.setDisable(true);
         editButton.setDisable(true);
         deleteButton.setDisable(true);
+        creationDateDatePicker.setDisable(true);
     }
 
     public void onUpdate() {
@@ -586,6 +590,7 @@ public class MainWindowController extends Application implements Initializable{
         typeComboBox.setDisable(true);
         saveButton.setDisable(true);
         editButton.setDisable(true);
+        creationDateDatePicker.setDisable(true);
         cancelButton.setDisable(true);
 
         if (addMode == true) {
