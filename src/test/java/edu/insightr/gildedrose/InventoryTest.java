@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -91,6 +93,14 @@ public class InventoryTest {
             }
         }
     }*/
+
+    @Test
+    public void testAddItemInventory() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        inv.addItem(new Elixir("Elixir",15,20,format.parse("17-12-2018")));
+        assertEquals(oldList.length+1,inv.getItems().length);
+    }
+
 
 
     @Test
