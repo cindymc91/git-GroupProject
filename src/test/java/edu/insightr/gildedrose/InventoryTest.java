@@ -4,7 +4,7 @@ import edu.insightr.gildedrose.Model.Inventory;
 import edu.insightr.gildedrose.Model.Item;
 import org.junit.Before;
 import org.junit.Test;
-import edu.insightr.gildedrose.Model.Elixir;
+import edu.insightr.gildedrose.Model.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
