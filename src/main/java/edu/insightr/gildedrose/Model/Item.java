@@ -1,8 +1,7 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.Model;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 

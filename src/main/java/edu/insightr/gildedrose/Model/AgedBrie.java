@@ -1,4 +1,4 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.Model;
 
 import java.util.Date;
 

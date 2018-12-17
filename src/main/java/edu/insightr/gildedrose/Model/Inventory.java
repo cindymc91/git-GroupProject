@@ -1,39 +1,10 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.Model;
 
-import javafx.application.Application;
-import javafx.beans.binding.IntegerBinding;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import javax.swing.*;
-import java.io.File;
-import java.io.FileReader;
 import java.util.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Iterator;
 
-import static java.lang.Math.toIntExact;
-
-public class Inventory extends Application {
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainwindow.fxml"));
-        primaryStage.setTitle("Main Window");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
-        primaryStage.show();
-    }
-
+public class Inventory {
     private Item[] items;
 
     public Item[] getItems() {
@@ -132,20 +103,20 @@ public class Inventory extends Application {
         }
     }*/
 
-    void updateQuality(){
+    public void updateQuality(){
         UpdateVisitor aVisitor = new UpdateVisitor();
         for (int i = 0; i < items.length; i++){
             items[i].accept(aVisitor);
         }
     }
 
-    void updateSellin(){
+    public void updateSellin(){
         for (int i = 0; i < items.length; i++){
             items[i].setSellIn(items[i].getSellIn()-1);
         }
     }
 
-    void deleteItem(Item item) {
+    public void deleteItem(Item item) {
         int position= -1;
         for (int i = 0; i < items.length; i++) {
             if (item.getId() == items[i].getId()) {
@@ -163,7 +134,7 @@ public class Inventory extends Application {
     }
 
 
-    void addItem(Item item){
+    public void addItem(Item item){
         int freeIndex = -1;
         for( int i= 0;i<items.length;i++){
             if(items[i]==null){
@@ -185,7 +156,7 @@ public class Inventory extends Application {
         }
     }
 
-    void editItem(int idDeItemAModifier, Item nouveauItem)
+    public void editItem(int idDeItemAModifier, Item nouveauItem)
     {
         for(int i=0; i<items.length;i++)
         {
@@ -196,7 +167,7 @@ public class Inventory extends Application {
         }
     }
 
-    Item fetchItemById(int id){
+    public Item fetchItemById(int id){
         try{
             for(int i = 0; i < items.length; i++) {
                 if (items[i].getId() == id)
@@ -206,18 +177,5 @@ public class Inventory extends Application {
             System.out.println(e.getMessage());
         }
         return null;
-    }
-
-
-    public static void main(String[] args) {
-
-        launch(args);
-
-
-//        for (int i = 0; i < 10; i++) {
-//            inventory.updateSellin();
-//            inventory.updateQuality();
-//            inventory.printInventory();
-//        }
     }
 }

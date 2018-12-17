@@ -1,10 +1,10 @@
 package edu.insightr.gildedrose;
 
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import edu.insightr.gildedrose.Model.Inventory;
+import edu.insightr.gildedrose.Model.Item;
 
 import java.util.*;
 
@@ -29,13 +29,12 @@ public class Stepdefs {
     public void iHaveAListOfSortedItemIds() throws Throwable {
         inventory = new Inventory();
         items = inventory.getItems();
-        ArrayList<Integer> ids = new ArrayList<Integer>();
 
         for (Item it : items) {
-            ids.add(it.getId());
+            itemIDs.add(it.getId());
         }
-        Collections.sort(ids);
-        itemIDs.addAll(ids);
+        itemIDs.add(4);
+        Collections.sort(itemIDs);
     }
 
     @Then("^No two consecutive values are the same$")

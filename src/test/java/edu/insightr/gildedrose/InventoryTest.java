@@ -1,5 +1,7 @@
 package edu.insightr.gildedrose;
 
+import edu.insightr.gildedrose.Model.Inventory;
+import edu.insightr.gildedrose.Model.Item;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -76,15 +78,7 @@ public class InventoryTest {
 
     //Testing:
     // "Conjured" items degrade in Quality twice as fast as normal items
-    @Test
-    public void testUpdateConjured() throws Exception {
-        inv.updateQuality();
-        for (int i = 0; i < inv.getItems().length; i++) {
-            if (oldList[i].getName().matches(".*Conjured.*")) {
-                assertEquals(oldList[i].getQuality() - 2, inv.getItems()[i].getQuality());
-            }
-        }
-    }
+
     /*public void testUpdateConjured() throws Exception {
         inv.updateQuality();
         for (int i = 0; i < inv.getItems().length; i++) {
@@ -101,6 +95,29 @@ public class InventoryTest {
         assertEquals(oldList.length+1,inv.getItems().length);
     }
 
+
+
+    // Testing :
+    // Length of inventory list decreased by one
+    @Test
+    public void testDeleteLength() throws Exception{
+        Item item = inv.getItems()[0];
+        inv.deleteItem(item);
+        assertEquals(oldList.length - 1,inv.getItems().length);
+    }
+
+    // Testing :
+    // Deleted item cannot be found in the inventory list = item successfully deleted
+    @Test
+    public void testDeleteCorrectItem() throws Exception{
+        Item item = inv.getItems()[0];
+        int id = item.getId();
+        inv.deleteItem(item);
+        for(Item i : inv.getItems())
+        {
+            assertFalse(i.getId() == id);
+        }
+    }
 
 
     @Test

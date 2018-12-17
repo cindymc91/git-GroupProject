@@ -1,9 +1,14 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.Controller;
 
+import edu.insightr.gildedrose.Model.*;
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 
@@ -13,11 +18,11 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 import java.util.function.Function;
 
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -25,8 +30,9 @@ import org.json.simple.parser.JSONParser;
 import javax.swing.*;
 
 import static java.lang.Math.toIntExact;
+import static javafx.application.Application.launch;
 
-public class MainWindowController implements Initializable {
+public class MainWindowController extends Application implements Initializable{
 
     private Inventory inv;
     private boolean addMode;
@@ -70,6 +76,15 @@ public class MainWindowController implements Initializable {
     ListView<Item> listeAchats;
     @FXML
     ListView<Item> listeVentes;
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainwindow.fxml"));
+        primaryStage.setTitle("Main Window");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -676,5 +691,10 @@ public class MainWindowController implements Initializable {
         qualityTF.setText("");
         idNumberLabel.setText("");
         typeComboBox.setValue(null);
+    }
+
+    public static void main(String[] args) {
+
+        launch(args);
     }
 }

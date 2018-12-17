@@ -1,8 +1,11 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.Model;
+
+import edu.insightr.gildedrose.Model.IVisitor;
+import edu.insightr.gildedrose.Model.Item;
 
 import java.util.Date;
 
-public class Sulfuras extends Item{
+public class Sulfuras extends Item {
 
     public Sulfuras() {
         super();
