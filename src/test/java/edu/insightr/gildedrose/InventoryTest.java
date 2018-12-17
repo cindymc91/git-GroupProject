@@ -87,6 +87,29 @@ public class InventoryTest {
     }*/
 
 
+    // Testing :
+    // Length of inventory list decreased by one
+    @Test
+    public void testDeleteLength() throws Exception{
+        Item item = inv.getItems()[0];
+        inv.deleteItem(item);
+        assertEquals(oldList.length - 1,inv.getItems().length);
+    }
+
+    // Testing :
+    // Deleted item cannot be found in the inventory list = item successfully deleted
+    @Test
+    public void testDeleteCorrectItem() throws Exception{
+        Item item = inv.getItems()[0];
+        int id = item.getId();
+        inv.deleteItem(item);
+        for(Item i : inv.getItems())
+        {
+            assertFalse(i.getId() == id);
+        }
+    }
+
+
     @Test
     public void main() {
     }
